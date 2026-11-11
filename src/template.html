@@ -1,0 +1,572 @@
+<title>גלגלי שיניים ודגמים</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Secular+One&family=Assistant:wght@400;600;700&family=Rubik:wght@500;700&display=swap">
+<style>
+/* Layout concept: a workshop drawer — a coloured bin per mechanism family, each model
+   on a light render plate so the original LEGO renders sit naturally in both themes. */
+:root{
+  --bg:#EEF1F5; --bg-band:#E3E8EF; --surface:#FFFFFF; --surface-2:#F6F8FB;
+  --ink:#141C27; --ink-2:#56657A; --ink-3:#8494A8;
+  --line:#D3DBE5; --line-2:#BFCAD8;
+  --accent:#C9411F; --accent-ink:#FFFFFF; --accent-soft:#FBE8E2;
+  --plate:#E5E4E1; --plate-line:#D2D1CE;
+  --c-angle:#2259C4; --c-door:#B73328; --c-swing:#26764C; --c-worm:#6B3FB0; --c-mission:#A96C05;
+  --shadow:0 1px 2px rgba(17,28,45,.06), 0 8px 24px -14px rgba(17,28,45,.28);
+  --ff-display:"Secular One","Arial Hebrew","Noto Sans Hebrew",system-ui,sans-serif;
+  --ff-body:"Assistant","Arial Hebrew","Noto Sans Hebrew",system-ui,sans-serif;
+  --ff-ui:"Rubik","Assistant",system-ui,sans-serif;
+  --gut-r:max(16px, env(safe-area-inset-right, 0px));
+  --gut-l:max(16px, env(safe-area-inset-left, 0px));
+  direction:rtl;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#10151C; --bg-band:#161D26; --surface:#1A222D; --surface-2:#202A37;
+  --ink:#E9EEF5; --ink-2:#A3B2C4; --ink-3:#74849A;
+  --line:#2A3542; --line-2:#3A4858;
+  --accent:#FF7A55; --accent-ink:#1A0E09; --accent-soft:#33201A;
+  --c-angle:#7AA6F5; --c-door:#F08B7E; --c-swing:#6ECB98; --c-worm:#B894F0; --c-mission:#E7B14A;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -16px rgba(0,0,0,.8);
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#10151C; --bg-band:#161D26; --surface:#1A222D; --surface-2:#202A37;
+  --ink:#E9EEF5; --ink-2:#A3B2C4; --ink-3:#74849A;
+  --line:#2A3542; --line-2:#3A4858;
+  --accent:#FF7A55; --accent-ink:#1A0E09; --accent-soft:#33201A;
+  --c-angle:#7AA6F5; --c-door:#F08B7E; --c-swing:#6ECB98; --c-worm:#B894F0; --c-mission:#E7B14A;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -16px rgba(0,0,0,.8);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--ff-body);font-size:17px;line-height:1.65;margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:var(--surface)}
+h1,h2,h3{font-family:var(--ff-display);font-weight:400;line-height:1.25;text-wrap:balance;margin:0}
+p{margin:0}
+a{color:inherit}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1120px;margin-inline:auto;padding-left:var(--gut-l);padding-right:var(--gut-r)}
+
+/* ---------- header ---------- */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--surface);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:14px;padding-block:10px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex:0 0 auto}
+.brand img{width:38px;height:38px;border-radius:9px;background:var(--plate)}
+.brand b{font-family:var(--ff-display);font-size:19px;font-weight:400;letter-spacing:-.01em;white-space:nowrap}
+.brand span{display:block;font-family:var(--ff-ui);font-size:11px;color:var(--ink-3);letter-spacing:.04em}
+nav.main{display:flex;gap:2px;flex-wrap:wrap;margin-inline-start:auto}
+nav.main a{font-family:var(--ff-ui);font-size:14.5px;font-weight:500;text-decoration:none;color:var(--ink-2);padding:7px 11px;border-radius:8px}
+nav.main a:hover{background:var(--surface-2);color:var(--ink)}
+nav.main a[aria-current]{background:var(--accent-soft);color:var(--accent)}
+.searchbox{position:relative;flex:1 1 180px;min-width:150px;max-width:280px}
+.searchbox input{width:100%;font:inherit;font-size:15px;padding:8px 34px 8px 12px;border:1px solid var(--line-2);border-radius:10px;background:var(--surface-2);color:var(--ink)}
+.searchbox input::placeholder{color:var(--ink-3)}
+.searchbox svg{position:absolute;inset-inline-start:10px;top:50%;transform:translateY(-50%);width:16px;height:16px;fill:none;stroke:var(--ink-3);stroke-width:2;pointer-events:none}
+.themebtn{flex:0 0 auto;width:38px;height:38px;display:grid;place-items:center;border:1px solid var(--line-2);background:var(--surface-2);border-radius:10px;cursor:pointer}
+.themebtn svg{width:18px;height:18px;fill:none;stroke:var(--ink-2);stroke-width:1.8}
+
+/* ---------- hero ---------- */
+.hero{background:var(--bg-band);border-bottom:1px solid var(--line);overflow:hidden;position:relative}
+.hero .wrap{padding-block:clamp(28px,6vw,56px);position:relative;z-index:1}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:28px;align-items:center}
+@media (max-width:760px){.hero-grid{grid-template-columns:1fr;gap:18px}}
+.eyebrow{font-family:var(--ff-ui);font-size:12.5px;font-weight:700;letter-spacing:.1em;color:var(--accent);margin-bottom:10px}
+.hero h1{font-size:clamp(30px,5.6vw,50px);letter-spacing:-.02em}
+.hero .lede{font-size:clamp(16.5px,2.2vw,19.5px);color:var(--ink-2);margin-top:14px;max-width:38em}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:9px 14px;min-width:92px}
+.stat b{display:block;font-family:var(--ff-ui);font-weight:700;font-size:22px;font-variant-numeric:tabular-nums;line-height:1.1}
+.stat span{font-size:13px;color:var(--ink-2)}
+.hero-art{display:grid;place-items:center;min-height:200px}
+.hero-art svg{width:100%;max-width:320px;height:auto}
+
+/* ---------- sections ---------- */
+section{padding-block:clamp(30px,5vw,52px)}
+.sec-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.sec-head h2{font-size:clamp(22px,3.4vw,30px);letter-spacing:-.015em}
+.sec-sub{color:var(--ink-2);margin-bottom:22px;max-width:60ch}
+
+/* ---------- category bins ---------- */
+.bins{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.bin{display:block;text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px;position:relative;overflow:hidden;transition:transform .16s ease, box-shadow .16s ease}
+.bin::before{content:"";position:absolute;inset-block:0;inset-inline-start:0;width:5px;background:var(--bin)}
+.bin:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.bin .pill{display:inline-block;font-family:var(--ff-ui);font-size:11.5px;font-weight:700;letter-spacing:.05em;color:var(--bin);background:color-mix(in srgb, var(--bin) 12%, transparent);padding:3px 9px;border-radius:999px}
+.bin h3{font-size:21px;margin-top:10px}
+.bin p{color:var(--ink-2);font-size:15px;margin-top:7px}
+.bin .count{font-family:var(--ff-ui);font-size:13px;font-weight:500;color:var(--ink-3);margin-top:12px;display:flex;align-items:center;gap:6px}
+
+/* ---------- model cards ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(216px,1fr));gap:14px}
+.card{display:flex;flex-direction:column;text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:transform .16s ease, box-shadow .16s ease}
+.card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.plate{background:var(--plate);border-bottom:1px solid var(--plate-line);aspect-ratio:1/1;max-width:100%;display:grid;place-items:center;overflow:hidden}
+.plate img{width:100%;height:100%;object-fit:contain}
+.card-body{padding:12px 13px 14px;display:flex;flex-direction:column;gap:6px;flex:1;min-width:0}
+.card h3{font-size:16.5px;line-height:1.35}
+.card .en{font-family:var(--ff-ui);font-size:11.5px;color:var(--ink-3);direction:ltr;text-align:right;word-break:break-word}
+.tagline{display:flex;align-items:center;gap:6px;font-family:var(--ff-ui);font-size:11.5px;font-weight:500;color:var(--bin);margin-top:auto;padding-top:6px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--bin);flex:0 0 auto}
+
+/* ---------- chips ---------- */
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.chip{font-family:var(--ff-ui);font-size:13.5px;font-weight:500;padding:6px 13px;border-radius:999px;border:1px solid var(--line-2);background:var(--surface);cursor:pointer;text-decoration:none;color:var(--ink-2)}
+.chip:hover{border-color:var(--ink-3);color:var(--ink)}
+.chip[aria-pressed="true"],.chip[aria-current]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+/* ---------- model detail ---------- */
+.back{display:inline-flex;align-items:center;gap:6px;font-family:var(--ff-ui);font-size:14px;font-weight:500;color:var(--ink-2);text-decoration:none;margin-bottom:16px}
+.back:hover{color:var(--accent)}
+.detail{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
+@media (max-width:820px){.detail{grid-template-columns:1fr;gap:20px}}
+.detail .plate{border:1px solid var(--plate-line);border-radius:16px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 74px)}
+@media (max-width:820px){.detail .plate{position:static}}
+.detail h1{font-size:clamp(24px,4.2vw,34px);letter-spacing:-.015em;margin-top:8px}
+.detail .en{font-family:var(--ff-ui);font-size:13px;color:var(--ink-3);direction:ltr;text-align:right;margin-top:6px}
+.block{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:15px 16px;margin-top:16px}
+.block h4{font-family:var(--ff-ui);font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--ink-3);margin:0 0 7px}
+.block p{font-size:16px}
+.ratio-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.ratio-box{flex:1 1 130px;background:var(--surface-2);border:1px solid var(--line);border-radius:11px;padding:11px 13px}
+.ratio-box b{display:block;font-family:var(--ff-ui);font-weight:700;font-size:20px;font-variant-numeric:tabular-nums}
+.ratio-box span{font-size:13px;color:var(--ink-2)}
+.dl{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--ff-ui);font-size:15px;font-weight:500;text-decoration:none;padding:11px 17px;border-radius:11px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink)}
+.btn:hover{border-color:var(--ink-3)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.primary:hover{filter:brightness(1.06)}
+.btn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.9}
+.srcnote{font-size:13.5px;color:var(--ink-3);margin-top:12px}
+.srcnote a{color:var(--ink-2)}
+.nextprev{display:flex;gap:10px;justify-content:space-between;margin-top:30px;flex-wrap:wrap}
+
+/* ---------- learn ---------- */
+.lesson{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:clamp(18px,3vw,26px);margin-bottom:16px}
+.lesson h2{font-size:clamp(20px,3vw,26px)}
+.lesson p{color:var(--ink-2);margin-top:10px}
+.lesson p strong{color:var(--ink);font-weight:700}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,280px);gap:24px;align-items:center}
+@media (max-width:720px){.two{grid-template-columns:1fr}}
+.gearstage{display:grid;place-items:center;background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:12px;min-width:0}
+.gearstage svg{width:100%;max-width:250px;height:auto;overflow:visible}
+.spin-a{transform-box:fill-box;transform-origin:center;animation:spin var(--dur-a,4s) linear infinite}
+.spin-b{transform-box:fill-box;transform-origin:center;animation:spin var(--dur-b,4s) linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion: reduce){.spin-a,.spin-b{animation:none}}
+.calc{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:16px}
+.field label{display:block;font-family:var(--ff-ui);font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--ink-3);margin-bottom:5px}
+.field select{width:100%;font:inherit;font-size:15.5px;padding:9px 11px;border:1px solid var(--line-2);border-radius:10px;background:var(--surface-2);color:var(--ink)}
+.readout{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:14px}
+.readout div{background:var(--surface-2);border:1px solid var(--line);border-radius:11px;padding:12px 14px}
+.readout b{display:block;font-family:var(--ff-ui);font-weight:700;font-size:21px;font-variant-numeric:tabular-nums}
+.readout span{font-size:13.5px;color:var(--ink-2)}
+.verdict{margin-top:12px;font-size:16px;background:var(--accent-soft);border:1px solid color-mix(in srgb, var(--accent) 30%, transparent);color:var(--ink);border-radius:11px;padding:12px 14px}
+.family{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:16px}
+.fam{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:14px}
+.fam h4{font-family:var(--ff-display);font-weight:400;font-size:17px;margin:0 0 5px}
+.fam p{font-size:14.5px;margin:0;color:var(--ink-2)}
+.steps{counter-reset:s;display:grid;gap:12px;margin-top:16px}
+.step{display:grid;grid-template-columns:34px minmax(0,1fr);gap:13px;align-items:start}
+.step::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--accent);color:var(--accent-ink);font-family:var(--ff-ui);font-weight:700;font-size:16px}
+.step b{display:block;font-family:var(--ff-display);font-weight:400;font-size:17.5px}
+.step p{margin-top:3px;font-size:15.5px}
+
+/* ---------- links / about ---------- */
+.reslist{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:13px}
+.res{display:flex;flex-direction:column;gap:7px;background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:16px 17px;text-decoration:none}
+.res:hover{border-color:var(--ink-3)}
+.res h3{font-size:18px}
+.res p{font-size:14.5px;color:var(--ink-2)}
+.res span{font-family:var(--ff-ui);font-size:12.5px;font-weight:500;color:var(--accent);margin-top:auto;padding-top:4px;direction:ltr;text-align:right}
+.prose{max-width:66ch}
+.prose p{margin-top:14px;color:var(--ink-2);font-size:17px}
+.prose h3{font-size:20px;margin-top:26px}
+
+/* ---------- misc ---------- */
+.empty{background:var(--surface);border:1px dashed var(--line-2);border-radius:14px;padding:30px;text-align:center;color:var(--ink-2)}
+footer{background:var(--bg-band);border-top:1px solid var(--line);margin-top:30px}
+footer .wrap{padding-block:26px;display:grid;gap:10px}
+footer p{font-size:13.5px;color:var(--ink-3);max-width:70ch}
+footer a{color:var(--ink-2)}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#home">
+      <img src="img/logo.jpg" alt="">
+      <span><b>גלגלי שיניים ודגמים</b><span>נבחרת הרובוטיקה · בית ספר מודיעים</span></span>
+    </a>
+    <nav class="main" id="nav">
+      <a href="#home">בית</a>
+      <a href="#learn">איך זה עובד</a>
+      <a href="#links">מקורות</a>
+      <a href="#about">על האתר</a>
+    </nav>
+    <div class="searchbox">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5 21 21"/></svg>
+      <input id="q" type="search" placeholder="חיפוש דגם…" aria-label="חיפוש דגם" autocomplete="off">
+    </div>
+    <button class="themebtn" id="themebtn" type="button" aria-label="מעבר בין מצב בהיר לכהה">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="view"></main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>הדגמים, התמונות והוראות הבנייה נוצרו על ידי קבוצת Desert Capybaras #3000 מאופקים</strong> ומפורסמים באתר <a href="https://www.gearsandmodels.org/">gearsandmodels.org</a>. האתר הזה הוא עיבוד בעברית של התוכן שלהם, לשימוש נבחרת הרובוטיקה של בית ספר מודיעים.</p>
+    <p>האתר אינו קשור לקבוצת LEGO ואינו מייצג אותה. LEGO®‎, FIRST®‎ ו‑FIRST®‎ LEGO®‎ League הם סימנים מסחריים של בעליהם.</p>
+  </div>
+</footer>
+
+<script>
+/*__DATA__*/
+
+/* ---------- helpers ---------- */
+var $ = function(s){ return document.querySelector(s); };
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+function catOf(k){ return CATS[k]; }
+function modelsIn(k){ return MODELS.filter(function(m){ return m.c===k; }); }
+
+/* ---------- theme ---------- */
+(function(){
+  var root=document.documentElement;
+  root.setAttribute('lang','he'); root.setAttribute('dir','rtl');
+  try{ var t=localStorage.getItem('gm-theme'); if(t==='dark'||t==='light') root.setAttribute('data-theme',t); }catch(e){}
+  $('#themebtn').addEventListener('click', function(){
+    var cur=root.getAttribute('data-theme');
+    if(!cur) cur = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    var next = cur==='dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try{ localStorage.setItem('gm-theme', next); }catch(e){}
+  });
+})();
+
+/* ---------- gear drawing ---------- */
+function gearPath(n, R, r){
+  var step = Math.PI*2/n, tw = step*0.30, bw = step*0.47, d='';
+  function p(a,rad){ return (Math.cos(a)*rad).toFixed(2)+','+(Math.sin(a)*rad).toFixed(2); }
+  for(var i=0;i<n;i++){
+    var a=i*step;
+    d += (i===0?'M':'L')+p(a-bw,r)+'L'+p(a-tw,R)+'L'+p(a+tw,R)+'L'+p(a+bw,r);
+  }
+  return d+'Z';
+}
+function gearSVG(n, R, cls, color){
+  var r = R*0.80, hub = R*0.26;
+  return '<g class="'+cls+'"><path d="'+gearPath(n,R,r)+'" fill="'+color+'"/>'+
+    '<circle r="'+hub.toFixed(1)+'" fill="var(--surface-2)"/>'+
+    '<path d="M'+(-hub*0.62).toFixed(1)+' '+(-hub*0.22).toFixed(1)+'h'+(hub*0.40).toFixed(1)+'v'+(-hub*0.40).toFixed(1)+'h'+(hub*0.44).toFixed(1)+'v'+(hub*0.40).toFixed(1)+'h'+(hub*0.40).toFixed(1)+'v'+(hub*0.44).toFixed(1)+'h'+(-hub*0.40).toFixed(1)+'v'+(hub*0.40).toFixed(1)+'h'+(-hub*0.44).toFixed(1)+'v'+(-hub*0.40).toFixed(1)+'h'+(-hub*0.40).toFixed(1)+'Z" fill="var(--ink-3)"/></g>';
+}
+function gearPair(nA,nB,colA,colB){
+  var k = 3.1;                       // px per tooth-ish scale
+  var RA = Math.max(26, nA*k/2), RB = Math.max(26, nB*k/2);
+  var gap = RA*0.80 + RB*0.80;       // pitch circles touch
+  var w = RA + gap + RB + 16, h = Math.max(RA,RB)*2 + 16;
+  var cx1 = RA+8, cx2 = cx1 + gap, cy = h/2;
+  return '<svg viewBox="0 0 '+w.toFixed(0)+' '+h.toFixed(0)+'" role="img" aria-label="שני גלגלי שיניים מסתובבים">'+
+    '<g transform="translate('+cx1.toFixed(1)+','+cy.toFixed(1)+')">'+gearSVG(nA,RA,'spin-a',colA)+'</g>'+
+    '<g transform="translate('+cx2.toFixed(1)+','+cy.toFixed(1)+')">'+gearSVG(nB,RB,'spin-b',colB)+'</g></svg>';
+}
+
+/* ---------- views ---------- */
+function viewHome(){
+  var bins = Object.keys(CATS).map(function(k){
+    var c = CATS[k], n = modelsIn(k).length;
+    return '<a class="bin" href="#cat-'+k+'" style="--bin:'+c.color+'">'+
+      '<span class="pill">'+esc(c.tag)+'</span>'+
+      '<h3>'+esc(c.he)+'</h3><p>'+esc(c.d)+'</p>'+
+      '<span class="count">'+n+' דגמים ←</span></a>';
+  }).join('');
+
+  return '<div class="hero"><div class="wrap"><div class="hero-grid"><div>'+
+    '<div class="eyebrow">מנגנוני לגו טכניק · הוראות בנייה חינם</div>'+
+    '<h1>כל מנגנון שתצטרכו לרובוט — מוסבר, מצויר ומוכן לבנייה</h1>'+
+    '<p class="lede">אוסף של '+MODELS.length+' מנגנוני גלגלי שיניים ודגמי משימות, עם תמונה של כל דגם, הסבר מה הוא עושה, הוראות בנייה להורדה וקובץ תלת־ממד שאפשר לפתוח ולשנות.</p>'+
+    '<div class="stats">'+
+      '<div class="stat"><b>'+MODELS.length+'</b><span>דגמים</span></div>'+
+      '<div class="stat"><b>'+Object.keys(CATS).length+'</b><span>קטגוריות</span></div>'+
+      '<div class="stat"><b>חינם</b><span>הכול להורדה</span></div>'+
+    '</div></div>'+
+    '<div class="hero-art">'+gearPair(24,12,'var(--c-angle)','var(--accent)')+'</div>'+
+    '</div></div></div>'+
+
+    '<section><div class="wrap">'+
+    '<div class="sec-head"><h2>בוחרים משפחת מנגנונים</h2></div>'+
+    '<p class="sec-sub">כל קטגוריה פותרת בעיה אחרת ברובוט. אם אתם לא בטוחים מאיפה להתחיל — נסו קודם את "שינוי זווית הסיבוב".</p>'+
+    '<div class="bins">'+bins+'</div></div></section>'+
+
+    '<section style="background:var(--bg-band);border-block:1px solid var(--line)"><div class="wrap">'+
+    '<div class="sec-head"><h2>איך בונים דגם מהאתר</h2></div>'+
+    '<div class="steps" style="max-width:680px">'+
+      '<div class="step"><div><b>בוחרים דגם</b><p>נכנסים לקטגוריה, מסתכלים בתמונות ולוחצים על המנגנון שמתאים לכם.</p></div></div>'+
+      '<div class="step"><div><b>מורידים הוראות בנייה</b><p>כל דגם מגיע עם קובץ PDF של הוראות בנייה צעד אחר צעד, בדיוק כמו בערכת לגו.</p></div></div>'+
+      '<div class="step"><div><b>או פותחים את הדגם התלת־ממדי</b><p>קובץ ה‑ZIP מכיל דגם לתוכנת BrickLink Studio החינמית. אפשר לסובב אותו, לפרק אותו ולשנות אותו לפי הצורך.</p></div></div>'+
+      '<div class="step"><div><b>בונים, בודקים, משפרים</b><p>בנו את המנגנון בנפרד לפני שמחברים אותו לרובוט — ככה הרבה יותר קל לגלות מה לא עובד.</p></div></div>'+
+    '</div>'+
+    '<div class="dl"><a class="btn primary" href="#learn">רוצים קודם להבין איך גלגלי שיניים עובדים?</a></div>'+
+    '</div></section>'+
+
+    '<section><div class="wrap">'+
+    '<div class="sec-head"><h2>דגמים חדשים לבנייה</h2></div>'+
+    '<p class="sec-sub">כמה מנגנונים שכדאי להכיר כבר בהתחלה.</p>'+
+    '<div class="grid">'+PICKS.map(cardHTML).join('')+'</div>'+
+    '</div></section>';
+}
+
+function cardHTML(m){
+  var c = catOf(m.c);
+  return '<a class="card" href="#m-'+m.s+'" style="--bin:'+c.color+'">'+
+    '<div class="plate"><img src="'+m.img+'" alt="'+esc(m.he)+'" loading="lazy" width="620" height="620"></div>'+
+    '<div class="card-body"><h3>'+esc(m.he)+'</h3>'+
+    '<div class="en">'+esc(m.en)+'</div>'+
+    '<div class="tagline"><span class="dot"></span>'+esc(c.he)+'</div></div></a>';
+}
+
+function viewCat(k){
+  var c = catOf(k); if(!c) return viewHome();
+  var list = modelsIn(k);
+  var chips = Object.keys(CATS).map(function(x){
+    return '<a class="chip" href="#cat-'+x+'"'+(x===k?' aria-current="page"':'')+'>'+esc(CATS[x].he)+'</a>';
+  }).join('');
+  return '<section><div class="wrap">'+
+    '<a class="back" href="#home">→ חזרה לכל הקטגוריות</a>'+
+    '<div class="sec-head"><h2 style="color:'+c.color+'">'+esc(c.he)+'</h2><span style="font-family:var(--ff-ui);font-size:14px;color:var(--ink-3)">'+list.length+' דגמים</span></div>'+
+    '<p class="sec-sub">'+esc(c.d)+'</p>'+
+    '<div class="chips">'+chips+'</div>'+
+    '<div class="grid">'+list.map(cardHTML).join('')+'</div>'+
+    '</div></section>';
+}
+
+function viewModel(slug){
+  var i = MODELS.findIndex(function(m){ return m.s===slug; });
+  if(i<0) return viewHome();
+  var m = MODELS[i], c = catOf(m.c);
+  var sibs = modelsIn(m.c), si = sibs.indexOf(m);
+  var prev = sibs[si-1], next = sibs[si+1];
+
+  var ratio = '';
+  if(m.inT===0 && m.outT){
+    ratio = '<div class="block"><h4>יחס ההעברה</h4>'+
+      '<p>גלגל תולעת נחשב לשן אחת בלבד, ולכן הוא מניע גלגל של '+m.outT+' שיניים ביחס של <strong>1 : '+m.outT+'</strong>.</p>'+
+      '<div class="ratio-row">'+
+      '<div class="ratio-box"><b>×'+m.outT+'</b><span>איטי יותר</span></div>'+
+      '<div class="ratio-box"><b>×'+m.outT+'</b><span>חזק יותר</span></div>'+
+      '<div class="ratio-box"><b>ננעל</b><span>לא זז לבד אחורה</span></div>'+
+      '</div></div>';
+  } else if(m.inT && m.outT){
+    var f = m.outT/m.inT, g = gcd(m.inT, m.outT);
+    var txt = f>1 ? 'איטי יותר אבל חזק יותר' : (f<1 ? 'מהיר יותר אבל חלש יותר' : 'אותה מהירות ואותו כוח — רק הכיוון משתנה');
+    ratio = '<div class="block"><h4>יחס ההעברה</h4>'+
+      '<p>'+m.inT+' שיניים אל '+m.outT+' שיניים — יחס של <strong>'+(m.inT/g)+' : '+(m.outT/g)+'</strong>. היציאה '+txt+'.</p>'+
+      '<div class="ratio-row">'+
+      '<div class="ratio-box"><b>'+fmt(1/f)+'</b><span>מהירות ביציאה</span></div>'+
+      '<div class="ratio-box"><b>'+fmt(f)+'</b><span>כוח ביציאה</span></div>'+
+      '</div>'+
+      '<div class="gearstage" style="margin-top:12px">'+gearPair(m.inT, m.outT, c.color, 'var(--ink-3)')+'</div>'+
+      '</div>';
+  }
+
+  return '<section><div class="wrap">'+
+    '<a class="back" href="#cat-'+m.c+'">→ חזרה ל'+esc(c.he)+'</a>'+
+    '<div class="detail">'+
+    '<div class="plate"><img src="'+m.img+'" alt="'+esc(m.he)+'" width="620" height="620"></div>'+
+    '<div>'+
+      '<span class="chip" style="pointer-events:none;color:'+c.color+';border-color:'+c.color+'">'+esc(c.he)+'</span>'+
+      '<h1>'+esc(m.he)+'</h1>'+
+      '<div class="en">'+esc(m.en)+'</div>'+
+      '<div class="block"><h4>מה המנגנון הזה עושה</h4><p>'+esc(m.d)+'</p></div>'+
+      '<div class="block"><h4>מתי להשתמש בו</h4><p>'+esc(m.tip)+'</p></div>'+
+      ratio+
+      '<div class="dl">'+
+        (m.pdf ? '<a class="btn primary" href="'+m.pdf+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>הוראות בנייה (PDF)</a>' : '')+
+        (m.zip ? '<a class="btn" href="'+m.zip+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2.8 20 7v10l-8 4.2L4 17V7Z"/><path d="M4 7l8 4.2L20 7M12 11.2V21"/></svg>דגם תלת־ממד (Studio)</a>' : '')+
+      '</div>'+
+      '<p class="srcnote">הקבצים נפתחים באתר המקור <a href="'+m.src+'" target="_blank" rel="noopener">gearsandmodels.org</a>. את קובץ ה‑ZIP פותחים בתוכנת <a href="https://www.bricklink.com/v3/studio/download.page" target="_blank" rel="noopener">BrickLink Studio</a> החינמית.</p>'+
+    '</div></div>'+
+    '<div class="nextprev">'+
+      (prev ? '<a class="btn" href="#m-'+prev.s+'">→ '+esc(prev.he)+'</a>' : '<span></span>')+
+      (next ? '<a class="btn" href="#m-'+next.s+'">'+esc(next.he)+' ←</a>' : '<span></span>')+
+    '</div>'+
+    '</div></section>';
+}
+
+function gcd(a,b){ return b ? gcd(b, a%b) : a; }
+function fmt(x){ return (Math.round(x*100)/100).toString().replace(/\.00$/,''); }
+
+function viewSearch(term){
+  var t = term.trim().toLowerCase();
+  var list = MODELS.filter(function(m){
+    return (m.he+' '+m.en+' '+m.d+' '+CATS[m.c].he).toLowerCase().indexOf(t) >= 0;
+  });
+  return '<section><div class="wrap">'+
+    '<div class="sec-head"><h2>תוצאות חיפוש</h2><span style="font-family:var(--ff-ui);font-size:14px;color:var(--ink-3)">'+list.length+' דגמים עבור "'+esc(term)+'"</span></div>'+
+    (list.length ? '<div class="grid">'+list.map(cardHTML).join('')+'</div>'
+                 : '<div class="empty">לא נמצא דגם שמתאים לחיפוש. נסו מילה אחרת — למשל "תולעת", "דלת" או מספר שיניים.</div>')+
+    '</div></section>';
+}
+
+var GEAR_OPTS = [
+  {v:0,  t:'גלגל תולעת (worm)'},
+  {v:8,  t:'8 שיניים'},
+  {v:12, t:'12 שיניים (קוני)'},
+  {v:16, t:'16 שיניים'},
+  {v:20, t:'20 שיניים'},
+  {v:24, t:'24 שיניים'},
+  {v:28, t:'28 שיניים'},
+  {v:36, t:'36 שיניים'},
+  {v:40, t:'40 שיניים'},
+  {v:60, t:'60 שיניים (צלחת סיבוב)'}
+];
+
+function viewLearn(){
+  var opts = function(sel){ return GEAR_OPTS.map(function(o){
+    return '<option value="'+o.v+'"'+(o.v===sel?' selected':'')+'>'+o.t+'</option>'; }).join(''); };
+
+  return '<section><div class="wrap">'+
+  '<div class="sec-head"><h2>איך גלגלי שיניים עובדים</h2></div>'+
+  '<p class="sec-sub">ארבעה דברים שכדאי להבין לפני שבונים מנגנון. אחר כך כל הדגמים באתר פתאום הגיוניים.</p>'+
+
+  '<div class="lesson"><div class="two"><div>'+
+    '<h2>1. שיניים שתופסות שיניים</h2>'+
+    '<p>גלגל שיניים הוא גלגל עם שיניים סביבו. כששני גלגלים נוגעים, השיניים של האחד נכנסות בין השיניים של השני — ואז <strong>אי אפשר להחליק</strong>. בגלל זה גלגלי שיניים מעבירים כוח הרבה יותר טוב מאשר גלגלות וגומיות.</p>'+
+    '<p>שימו לב לדבר אחד חשוב: כששני גלגלים נוגעים ישירות, הם תמיד מסתובבים <strong>לכיוונים הפוכים</strong>. אחד עם כיוון השעון, השני נגד.</p>'+
+  '</div><div class="gearstage">'+gearPair(20,20,'var(--c-angle)','var(--accent)')+'</div></div></div>'+
+
+  '<div class="lesson">'+
+    '<h2>2. יחס ההעברה — המספר שקובע הכול</h2>'+
+    '<p>סופרים כמה שיניים יש בגלגל שמניע וכמה בגלגל שמונע. אם גלגל של 8 שיניים מסובב גלגל של 24 שיניים, הגלגל הגדול יסתובב <strong>פי שלושה לאט יותר</strong> — אבל יפעיל <strong>פי שלושה יותר כוח</strong>. זה המסחר הגדול של עולם המכניקה: אי אפשר לקבל גם מהירות וגם כוח.</p>'+
+    '<p>נסו בעצמכם — בחרו שני גלגלים וראו מה קורה:</p>'+
+    '<div class="calc">'+
+      '<div class="field"><label for="g1">הגלגל שמניע (מחובר למנוע)</label><select id="g1">'+opts(8)+'</select></div>'+
+      '<div class="field"><label for="g2">הגלגל שמונע (היציאה)</label><select id="g2">'+opts(24)+'</select></div>'+
+    '</div>'+
+    '<div class="readout" id="readout"></div>'+
+    '<div class="verdict" id="verdict"></div>'+
+    '<div class="gearstage" id="calcstage" style="margin-top:14px"></div>'+
+  '</div>'+
+
+  '<div class="lesson">'+
+    '<h2>3. משפחת גלגלי השיניים של טכניק</h2>'+
+    '<p>לא כל גלגל שיניים נראה אותו דבר. לכל סוג יש תפקיד משלו:</p>'+
+    '<div class="family">'+
+      '<div class="fam"><h4>גלגל רגיל</h4><p>שיניים סביב הגלגל. מעביר סיבוב בין שני צירים מקבילים — למשל 8, 16, 24 ו‑40 שיניים.</p></div>'+
+      '<div class="fam"><h4>גלגל קוני (bevel)</h4><p>השיניים נטויות כלפי פנים, כדי שהגלגל יוכל להיפגש עם גלגל אחר בזווית. ה‑12 וה‑20 הם הנפוצים.</p></div>'+
+      '<div class="fam"><h4>גלגל כתר (crown)</h4><p>השיניים יושבות על <em>פני</em> הגלגל ולא על שפתו. מאפשר חיבור של 90 מעלות עם גלגל רגיל לגמרי.</p></div>'+
+      '<div class="fam"><h4>גלגל תולעת (worm)</h4><p>נראה כמו בורג. נחשב לשן אחת, ולכן מאט מאוד ונותן כוח אדיר — וגם נועל את המנגנון במקום.</p></div>'+
+      '<div class="fam"><h4>מסילת שיניים (rack)</h4><p>לא גלגל אלא פס ישר עם שיניים. הופך סיבוב לתנועה בקו ישר, כמו מגירה שנפתחת.</p></div>'+
+      '<div class="fam"><h4>צלחת סיבוב (turntable)</h4><p>טבעת ענקית של 60 שיניים. מחזיקה צריח או זרוע כבדה ומאפשרת לה להסתובב בצורה יציבה.</p></div>'+
+    '</div>'+
+  '</div>'+
+
+  '<div class="lesson">'+
+    '<h2>4. ארבעה טיפים שחוסכים המון תסכול</h2>'+
+    '<div class="steps">'+
+      '<div class="step"><div><b>חזקו את הצירים משני הצדדים</b><p>גלגל שיניים שנתמך רק מצד אחד מתכופף תחת עומס, והשיניים מתחילות "לקפוץ". תמיד תמכו את הציר בשני צדדים.</p></div></div>'+
+      '<div class="step"><div><b>המרחק בין הצירים חייב להיות מדויק</b><p>בלגו יש מרחקים שעובדים ומרחקים שלא. אם הגלגלים חורקים או מחליקים — המרחק שגוי. השתמשו בקורות עם חורים כדי לקבע מרחק נכון.</p></div></div>'+
+      '<div class="step"><div><b>פחות גלגלים = פחות בזבוז</b><p>כל זוג גלגלים מאבד קצת כוח בחיכוך. אם אפשר להגיע לאותה תוצאה עם פחות גלגלים — עדיף.</p></div></div>'+
+      '<div class="step"><div><b>בדקו ביד לפני שמחברים מנוע</b><p>סובבו את המנגנון באצבע. אם זה כבד או נתקע — המנוע לא יסתדר עם זה טוב יותר מכם.</p></div></div>'+
+    '</div>'+
+  '</div>'+
+
+  '</div></section>';
+}
+
+function wireCalc(){
+  var g1=$('#g1'), g2=$('#g2'); if(!g1) return;
+  function upd(){
+    var a=+g1.value, b=+g2.value;
+    var ro=$('#readout'), vd=$('#verdict'), st=$('#calcstage');
+    if(a===0 && b===0){
+      ro.innerHTML='<div><b>—</b><span>שני גלגלי תולעת לא יכולים להיפגש</span></div>';
+      vd.textContent='בחרו גלגל שיניים רגיל באחד הצדדים.'; st.innerHTML=''; return;
+    }
+    if(a===0 || b===0){
+      var other = a===0 ? b : a;
+      ro.innerHTML = '<div><b>1 : '+other+'</b><span>יחס ההעברה</span></div>'+
+        '<div><b>×'+other+'</b><span>איטי יותר</span></div>'+
+        '<div><b>×'+other+'</b><span>חזק יותר</span></div>';
+      vd.innerHTML = 'גלגל תולעת נחשב לשן אחת. צריך '+other+' סיבובים שלמים של התולעת כדי לסובב את הגלגל השני סיבוב אחד — ובונוס: המנגנון <strong>ננעל</strong> ולא יכול לזוז אחורה לבד.';
+      st.innerHTML=''; return;
+    }
+    var f=b/a, g=gcd(a,b);
+    ro.innerHTML = '<div><b>'+(a/g)+' : '+(b/g)+'</b><span>יחס ההעברה</span></div>'+
+      '<div><b>'+fmt(1/f)+'</b><span>מהירות ביציאה</span></div>'+
+      '<div><b>'+fmt(f)+'</b><span>כוח ביציאה</span></div>';
+    if(f>1) vd.innerHTML = 'היציאה <strong>איטית פי '+fmt(f)+'</strong> אבל <strong>חזקה פי '+fmt(f)+'</strong>. מתאים להרמה, דחיפה וכל דבר כבד.';
+    else if(f<1) vd.innerHTML = 'היציאה <strong>מהירה פי '+fmt(1/f)+'</strong> אבל <strong>חלשה פי '+fmt(1/f)+'</strong>. מתאים לגלגלי נסיעה ולמאוורר — לא להרמה.';
+    else vd.innerHTML = 'אותו מספר שיניים משני הצדדים: <strong>אותה מהירות ואותו כוח</strong>. משתמשים בזה רק כדי לשנות כיוון או להעביר סיבוב למקום אחר.';
+    st.innerHTML = gearPair(a, b, 'var(--c-angle)', 'var(--accent)');
+    var sa = st.querySelector('.spin-a'), sb = st.querySelector('.spin-b');
+    if(sa) sa.style.setProperty('--dur-a', (a*0.22).toFixed(2)+'s');
+    if(sb) sb.style.setProperty('--dur-b', (b*0.22).toFixed(2)+'s');
+  }
+  g1.addEventListener('change', upd); g2.addEventListener('change', upd); upd();
+}
+
+function viewLinks(){
+  var items = LINKS.map(function(l){
+    var host = l.url.replace(/^https?:\/\//,'').replace(/\/.*$/,'');
+    return '<a class="res" href="'+l.url+'" target="_blank" rel="noopener">'+
+      '<h3>'+esc(l.he)+'</h3><p>'+esc(l.d)+'</p><span>'+esc(host)+' ↗</span></a>';
+  }).join('');
+  return '<section><div class="wrap">'+
+    '<div class="sec-head"><h2>מקורות והדרכות נוספות</h2></div>'+
+    '<p class="sec-sub">אתרים וכלים שכדאי להכיר. כולם נפתחים בחלון חדש ורובם באנגלית — אבל התמונות וההוראות מובנות גם בלי לקרוא כל מילה.</p>'+
+    '<div class="reslist">'+items+'</div></div></section>';
+}
+
+function viewAbout(){
+  return '<section><div class="wrap"><div class="prose">'+
+    '<div class="sec-head"><h2>על האתר הזה</h2></div>'+
+    '<p>האתר הזה הוא גרסה עברית של <a href="https://www.gearsandmodels.org/" target="_blank" rel="noopener">gearsandmodels.org</a>, שנבנתה עבור נבחרת הרובוטיקה של בית ספר מודיעים. כל הדגמים, התמונות, הוראות הבנייה וקבצי התלת־ממד הם של הקבוצה שיצרה אותם — אנחנו רק תרגמנו והסברנו.</p>'+
+    '<h3>מי בנה את הדגמים</h3>'+
+    '<p>את כל המנגנונים תכננה ובנתה קבוצת <strong>Desert Capybaras #3000</strong> מאופקים, קבוצת FIRST LEGO League שמשתתפת בתחרות ה‑FLL Challenge. האתר שלהם נוצר כחלק מפרויקט ערכי הליבה של הקבוצה, במטרה לשתף את המנגנונים שהם תכננו עם קבוצות אחרות.</p>'+
+    '<p>זו בדיוק רוח ה‑FLL: קבוצה אחת משקיעה חודשים בפיתוח מנגנון, ואז נותנת אותו במתנה לכל השאר.</p>'+
+    '<h3>מה עשינו כאן</h3>'+
+    '<p>תרגמנו את שמות הדגמים לעברית, הוספנו לכל מנגנון הסבר קצר על מה הוא עושה ומתי כדאי להשתמש בו, חישבנו את יחסי ההעברה, והוספנו עמוד לימוד על גלגלי שיניים. הקבצים להורדה עדיין מגיעים מהאתר המקורי.</p>'+
+    '<h3>רוצים להוסיף הדרכות?</h3>'+
+    '<p>האתר בנוי כך שאפשר להוסיף לו בהמשך מקורות והדרכות נוספים — מסרטוני הסבר ועד מנגנונים שהנבחרת שלנו תפתח בעצמה.</p>'+
+    '<h3>הערה משפטית</h3>'+
+    '<p>האתר אינו קשור לקבוצת LEGO ואינו מייצג אותה. כל הדגמים הם עבודה מקורית של קבוצת Desert Capybaras. LEGO®‎ וסימני המסחר הקשורים אליו שייכים לקבוצת LEGO; FIRST®‎ ו‑FIRST®‎ LEGO®‎ League שייכים לבעליהם.</p>'+
+    '</div></div></section>';
+}
+
+/* ---------- router ---------- */
+function render(){
+  var h = (location.hash || '#home').slice(1);
+  var html, navKey = 'home';
+  if(h.indexOf('cat-')===0){ html = viewCat(h.slice(4)); navKey='home'; }
+  else if(h.indexOf('m-')===0){ html = viewModel(h.slice(2)); navKey='home'; }
+  else if(h==='learn'){ html = viewLearn(); navKey='learn'; }
+  else if(h==='links'){ html = viewLinks(); navKey='links'; }
+  else if(h==='about'){ html = viewAbout(); navKey='about'; }
+  else { html = viewHome(); }
+  $('#view').innerHTML = html;
+  var qi = $('#q'); if(qi && qi.value && h==='home'){ /* keep */ }
+  Array.prototype.forEach.call(document.querySelectorAll('#nav a'), function(a){
+    if(a.getAttribute('href') === '#'+navKey) a.setAttribute('aria-current','page');
+    else a.removeAttribute('aria-current');
+  });
+  if(h==='learn') wireCalc();
+  window.scrollTo(0,0);
+}
+
+$('#q').addEventListener('input', function(e){
+  var v = e.target.value;
+  if(v.trim().length === 0){ render(); return; }
+  $('#view').innerHTML = viewSearch(v);
+  Array.prototype.forEach.call(document.querySelectorAll('#nav a'), function(a){ a.removeAttribute('aria-current'); });
+});
+document.addEventListener('click', function(e){
+  var a = e.target.closest && e.target.closest('a[href^="#"]');
+  if(a){ var qi=$('#q'); if(qi) qi.value=''; }
+});
+window.addEventListener('hashchange', render);
+render();
+</script>
