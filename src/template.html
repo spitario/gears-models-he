@@ -187,6 +187,16 @@ section{padding-block:clamp(30px,5vw,52px)}
 
 /* ---------- misc ---------- */
 .empty{background:var(--surface);border:1px dashed var(--line-2);border-radius:14px;padding:30px;text-align:center;color:var(--ink-2)}
+.fig{margin-top:18px;background:var(--plate);border:1px solid var(--plate-line);border-radius:13px;padding:10px}
+.fig img{display:block;width:100%;border-radius:8px;background:#fff}
+.fig figcaption{font-family:var(--ff-ui);font-size:13px;color:var(--ink-2);padding:10px 6px 2px;text-align:center}
+.srcbox{background:var(--surface-2);border:1px solid var(--line);border-inline-start:4px solid var(--bin,var(--accent));border-radius:12px;padding:15px 17px;margin-bottom:22px}
+.srcbox p{font-size:14.5px;color:var(--ink-2)}
+.srcbox strong{color:var(--ink)}
+.pipeline{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:10px;margin-top:18px}
+.pstep{background:var(--surface-2);border:1px solid var(--line);border-radius:11px;padding:13px 15px}
+.pstep b{font-family:var(--ff-ui);font-size:11.5px;font-weight:700;letter-spacing:.04em;color:var(--accent);display:block;margin-bottom:4px}
+.pstep span{font-size:15px;color:var(--ink-2)}
 footer{background:var(--bg-band);border-top:1px solid var(--line);margin-top:30px}
 footer .wrap{padding-block:26px;display:grid;gap:10px}
 footer p{font-size:13.5px;color:var(--ink-3);max-width:70ch}
@@ -201,7 +211,9 @@ footer a{color:var(--ink-2)}
     </a>
     <nav class="main" id="nav">
       <a href="#home">בית</a>
+      <a href="#guide">עקרונות בנייה</a>
       <a href="#learn">איך זה עובד</a>
+      <a href="#process">תהליך הפיתוח</a>
       <a href="#links">מקורות</a>
       <a href="#about">על האתר</a>
     </nav>
@@ -309,7 +321,9 @@ function viewHome(){
       '<div class="step"><div><b>או פותחים את הדגם התלת־ממדי</b><p>קובץ ה‑ZIP מכיל דגם לתוכנת BrickLink Studio החינמית. אפשר לסובב אותו, לפרק אותו ולשנות אותו לפי הצורך.</p></div></div>'+
       '<div class="step"><div><b>בונים, בודקים, משפרים</b><p>בנו את המנגנון בנפרד לפני שמחברים אותו לרובוט — ככה הרבה יותר קל לגלות מה לא עובד.</p></div></div>'+
     '</div>'+
-    '<div class="dl"><a class="btn primary" href="#learn">רוצים קודם להבין איך גלגלי שיניים עובדים?</a></div>'+
+    '<div class="dl"><a class="btn primary" href="#guide">עקרונות בנייה — להכיר את החלקים</a>'+
+    '<a class="btn" href="#learn">איך גלגלי שיניים עובדים</a>'+
+    '<a class="btn" href="#process">תהליך הפיתוח ההנדסי</a></div>'+
     '</div></section>'+
 
     '<section><div class="wrap">'+
@@ -530,11 +544,84 @@ function viewAbout(){
     '<p>זו בדיוק רוח ה‑FLL: קבוצה אחת משקיעה חודשים בפיתוח מנגנון, ואז נותנת אותו במתנה לכל השאר.</p>'+
     '<h3>מה עשינו כאן</h3>'+
     '<p>תרגמנו את שמות הדגמים לעברית, הוספנו לכל מנגנון הסבר קצר על מה הוא עושה ומתי כדאי להשתמש בו, חישבנו את יחסי ההעברה, והוספנו עמוד לימוד על גלגלי שיניים. הקבצים להורדה עדיין מגיעים מהאתר המקורי.</p>'+
+    '<h3>עקרונות הבנייה ותהליך הפיתוח</h3>'+
+    '<p>שני העמודים האלה הגיעו ממקורות אחרים, ואנחנו אסירי תודה עליהם. פרק <a href="#guide">עקרונות הבנייה</a> מבוסס על ההרצאה "עקרונות בנייה יסודיים ב‑FLL" של <strong>נועם, עופרי ושיר מנבחרת הג׳ירפות</strong> והמנטור <strong>יובל גור</strong> — קבוצה שהעפילה פעמיים לתחרות העולמית ודורגה במקום השני בעולם בתכנון הרובוט. עמוד <a href="#process">תהליך הפיתוח</a> מבוסס על הרצאת אורח של <strong>שי, מהנדס מכונות</strong> בתחום התעופה והחלל.</p>'+
+    '<p>הטקסט נכתב כאן מחדש והותאם לכיתות ה׳–ו׳, והתמונות הן שקופיות מקוריות מההרצאות.</p>'+
     '<h3>רוצים להוסיף הדרכות?</h3>'+
     '<p>האתר בנוי כך שאפשר להוסיף לו בהמשך מקורות והדרכות נוספים — מסרטוני הסבר ועד מנגנונים שהנבחרת שלנו תפתח בעצמה.</p>'+
     '<h3>הערה משפטית</h3>'+
     '<p>האתר אינו קשור לקבוצת LEGO ואינו מייצג אותה. כל הדגמים הם עבודה מקורית של קבוצת Desert Capybaras. LEGO®‎ וסימני המסחר הקשורים אליו שייכים לקבוצת LEGO; FIRST®‎ ו‑FIRST®‎ LEGO®‎ League שייכים לבעליהם.</p>'+
     '</div></div></section>';
+}
+
+
+/* ---------- עקרונות בנייה ---------- */
+function figure(dir,img,cap){
+  if(!img) return '';
+  return '<figure class="fig"><img src="img/'+dir+'/'+img+'.jpg" alt="'+esc(cap||'')+'" loading="lazy">'+
+    (cap ? '<figcaption>'+esc(cap)+'</figcaption>' : '')+'</figure>';
+}
+function stepsGrid(){
+  var steps=['זיהוי הצורך או הבעיה','מחקר מעמיק','הגדרת דרישות','סקר חלופות ופתרונות','אב־טיפוס','בדיקות וניסויים','תיקון בעיות (תמיד!)','בדיקות נוספות'];
+  return '<div class="pipeline">'+steps.map(function(x,i){return '<div class="pstep"><b>שלב '+(i+1)+'</b><span>'+esc(x)+'</span></div>';}).join('')+'</div>';
+}
+function secBlock(dir,s){
+  return '<div class="lesson"><h2>'+esc(s.h)+'</h2>'+
+    s.p.map(function(x){return x==='__STEPS__' ? stepsGrid() : '<p>'+x+'</p>';}).join('')+
+    figure(dir,s.img,s.cap)+'</div>';
+}
+var GIRAFFES = '<div class="srcbox"><p>הפרקים האלה מבוססים על ההרצאה <strong>"עקרונות בנייה יסודיים ב‑FLL"</strong> של '+
+  '<strong>נועם, עופרי ושיר מנבחרת הג׳ירפות</strong>, יחד עם המנטור <strong>יובל גור</strong> — קבוצה שהעפילה פעמיים לתחרות העולמית '+
+  'ודורגה במקום השני בעולם בתכנון הרובוט. התמונות הן שקופיות מקוריות מההרצאה שלהם. תודה!</p></div>';
+
+function viewGuide(){
+  var cards = CHAPTERS.map(function(c){
+    return '<a class="bin" href="#g-'+c.s+'" style="--bin:'+c.color+'">'+
+      '<span class="pill">'+c.secs.length+' נושאים</span>'+
+      '<h3>'+esc(c.he)+'</h3><p>'+esc(c.lead)+'</p></a>';
+  }).join('');
+  return '<section><div class="wrap">'+
+    '<div class="sec-head"><h2>עקרונות בנייה</h2></div>'+
+    '<p class="sec-sub">לפני שבונים מנגנון — כדאי להכיר את החלקים, להבין מה מחזיק חזק ומה זז, ולדעת למה מבנה אחד שורד תחרות והשני מתפרק. שישה פרקים, מהבסיס ועד הטריקים של הקבוצות המנוסות.</p>'+
+    GIRAFFES + '<div class="bins">'+cards+'</div></div></section>';
+}
+
+function viewChapter(slug){
+  var i = -1; CHAPTERS.forEach(function(c,k){ if(c.s===slug) i=k; });
+  if(i<0) return viewGuide();
+  var c = CHAPTERS[i], prev = CHAPTERS[i-1], next = CHAPTERS[i+1];
+  var chips = CHAPTERS.map(function(x){
+    return '<a class="chip" href="#g-'+x.s+'"'+(x.s===slug?' aria-current="page"':'')+'>'+esc(x.he)+'</a>';
+  }).join('');
+  return '<section><div class="wrap">'+
+    '<a class="back" href="#guide">→ חזרה לכל הפרקים</a>'+
+    '<div class="chips">'+chips+'</div>'+
+    '<div class="sec-head"><h2>'+esc(c.he)+'</h2></div>'+
+    '<p class="sec-sub">'+esc(c.lead)+'</p>'+
+    c.secs.map(function(s){ return secBlock('build',s); }).join('')+
+    '<div class="nextprev">'+
+      (prev ? '<a class="btn" href="#g-'+prev.s+'">→ '+esc(prev.he)+'</a>' : '<a class="btn" href="#guide">→ כל הפרקים</a>')+
+      (next ? '<a class="btn" href="#g-'+next.s+'">'+esc(next.he)+' ←</a>' : '<a class="btn primary" href="#home">לדגמים ←</a>')+
+    '</div></div></section>';
+}
+
+/* ---------- תהליך הפיתוח ---------- */
+function viewProcess(){
+  var P = PROCESS;
+  return '<section><div class="wrap">'+
+    '<div class="sec-head"><h2>מרעיון משוגע למציאות</h2></div>'+
+    '<p class="sec-sub">'+esc(P.lead)+'</p>'+
+    '<div class="srcbox"><p>העמוד הזה מבוסס על הרצאת אורח של <strong>שי, מהנדס מכונות</strong>, שעובד בחברה שמובילה פרויקטים בתחום התעופה והחלל. תודה על הביקור!</p></div>'+
+    '<div class="lesson">'+P.intro.map(function(x){return '<p>'+x+'</p>';}).join('')+
+    '</div>'+
+    P.secs.map(function(s){ return secBlock('process',s); }).join('')+
+    '<div class="sec-head" style="margin-top:34px"><h2>'+esc(P.caseTitle)+'</h2></div>'+
+    '<p class="sec-sub">'+esc(P.caseLead)+'</p>'+
+    figure('process','ocean-interceptor','מערכת ה‑Interceptor של The Ocean Cleanup, פועלת היום בנהרות ברחבי העולם')+
+    P.caseSecs.map(function(s){ return secBlock('process',s); }).join('')+
+    secBlock('process',P.outro)+
+    '<div class="dl"><a class="btn primary" href="#guide">עכשיו לעקרונות הבנייה ←</a></div>'+
+    '</div></section>';
 }
 
 /* ---------- router ---------- */
@@ -543,6 +630,9 @@ function render(){
   var html, navKey = 'home';
   if(h.indexOf('cat-')===0){ html = viewCat(h.slice(4)); navKey='home'; }
   else if(h.indexOf('m-')===0){ html = viewModel(h.slice(2)); navKey='home'; }
+  else if(h==='guide'){ html = viewGuide(); navKey='guide'; }
+  else if(h.indexOf('g-')===0){ html = viewChapter(h.slice(2)); navKey='guide'; }
+  else if(h==='process'){ html = viewProcess(); navKey='process'; }
   else if(h==='learn'){ html = viewLearn(); navKey='learn'; }
   else if(h==='links'){ html = viewLinks(); navKey='links'; }
   else if(h==='about'){ html = viewAbout(); navKey='about'; }
