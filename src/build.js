@@ -8,6 +8,7 @@ const ROOT = path.join(DIR, '..');
 
 const clean = require('./data/models.json');
 const he    = require('./he.js');
+const guide = require('./guide.js');
 
 const order = ['changing-rotation-angle','one-way-doors','swinging-mechanisms','worm-gears','first-fll-bioglow-mission-models'];
 
@@ -37,6 +38,8 @@ if (pickSlugs.some(s => !models.find(m => m.s === s))) console.error('slug שג�
 const data = 'var CATS='  + JSON.stringify(cats)   + ';\n'
            + 'var MODELS='+ JSON.stringify(models) + ';\n'
            + 'var LINKS=' + JSON.stringify(he.links)+ ';\n'
+           + 'var CHAPTERS='+JSON.stringify(guide.chapters)+';\n'
+           + 'var PROCESS='+JSON.stringify(guide.process)+';\n'
            + 'var PICKS=' + JSON.stringify(pickSlugs)
            + '.map(function(s){return MODELS.find(function(m){return m.s===s;});});';
 
