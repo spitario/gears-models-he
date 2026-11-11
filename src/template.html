@@ -197,6 +197,29 @@ section{padding-block:clamp(30px,5vw,52px)}
 .pstep{background:var(--surface-2);border:1px solid var(--line);border-radius:11px;padding:13px 15px}
 .pstep b{font-family:var(--ff-ui);font-size:11.5px;font-weight:700;letter-spacing:.04em;color:var(--accent);display:block;margin-bottom:4px}
 .pstep span{font-size:15px;color:var(--ink-2)}
+.bsearch{position:relative;margin-bottom:14px}
+.bsearch input{width:100%;font:inherit;font-size:16px;padding:12px 44px 12px 14px;border:1px solid var(--line-2);border-radius:12px;background:var(--surface);color:var(--ink)}
+.bsearch input::placeholder{color:var(--ink-3)}
+.bsearch svg{position:absolute;inset-inline-start:15px;top:50%;transform:translateY(-50%);width:18px;height:18px;fill:none;stroke:var(--ink-3);stroke-width:2;pointer-events:none}
+.bcount{font-family:var(--ff-ui);font-size:13.5px;color:var(--ink-3);margin-bottom:18px}
+.bgroup{margin-bottom:30px}
+.bgroup[hidden]{display:none}
+.grouphead{display:flex;align-items:baseline;gap:10px;border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:13px}
+.grouphead h3{font-size:20px}
+.grouphead span{font-family:var(--ff-ui);font-size:12.5px;color:var(--ink-3)}
+.gnote{font-size:14.5px;color:var(--ink-2);margin:-5px 0 13px;max-width:70ch}
+.blocklist{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:13px}
+.blk{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:13px;overflow:hidden}
+.blk[hidden]{display:none}
+.blk .shot{background:var(--plate);border-bottom:1px solid var(--plate-line);padding:13px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:92px}
+.blk .shot a{display:block;max-width:100%;border-radius:4px}
+.blk .shot a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.blk .shot img{max-width:100%;width:auto;height:auto;max-height:230px;object-fit:contain;display:block}
+.blk-body{padding:12px 14px 15px;display:flex;flex-direction:column;gap:7px;align-items:flex-start}
+.blk h3{font-size:16.5px;line-height:1.35}
+.blk p{font-size:14.5px;color:var(--ink-2);white-space:pre-line}
+.tag{font-family:var(--ff-ui);font-size:11px;font-weight:700;letter-spacing:.04em;padding:3px 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+.nores{background:var(--surface);border:1px dashed var(--line-2);border-radius:13px;padding:26px;text-align:center;color:var(--ink-2)}
 footer{background:var(--bg-band);border-top:1px solid var(--line);margin-top:30px}
 footer .wrap{padding-block:26px;display:grid;gap:10px}
 footer p{font-size:13.5px;color:var(--ink-3);max-width:70ch}
@@ -214,6 +237,7 @@ footer a{color:var(--ink-2)}
       <a href="#guide">עקרונות בנייה</a>
       <a href="#learn">איך זה עובד</a>
       <a href="#process">תהליך הפיתוח</a>
+      <a href="#blocks">מדריך הבלוקים</a>
       <a href="#links">מקורות</a>
       <a href="#about">על האתר</a>
     </nav>
@@ -547,6 +571,8 @@ function viewAbout(){
     '<h3>עקרונות הבנייה ותהליך הפיתוח</h3>'+
     '<p>שני העמודים האלה הגיעו ממקורות אחרים, ואנחנו אסירי תודה עליהם. פרק <a href="#guide">עקרונות הבנייה</a> מבוסס על ההרצאה "עקרונות בנייה יסודיים ב‑FLL" של <strong>נועם, עופרי ושיר מנבחרת הג׳ירפות</strong> והמנטור <strong>יובל גור</strong> — קבוצה שהעפילה פעמיים לתחרות העולמית ודורגה במקום השני בעולם בתכנון הרובוט. עמוד <a href="#process">תהליך הפיתוח</a> מבוסס על הרצאת אורח של <strong>שי, מהנדס מכונות</strong> בתחום התעופה והחלל.</p>'+
     '<p>הטקסט נכתב כאן מחדש והותאם לכיתות ה׳–ו׳, והתמונות הן שקופיות מקוריות מההרצאות.</p>'+
+    '<h3>מדריך הבלוקים</h3>'+
+    '<p><a href="#blocks">מדריך הבלוקים</a> תורגם לעברית ב‑2025 על ידי <strong>עמית הרדוף מקבוצת שאזם</strong> בעזרת AI. מקור הטקסט באנגלית: <a href="https://primelessons.org/" target="_blank" rel="noopener">primelessons.org</a>. התיאורים מבוססים על תפריט העזרה של SPIKE.</p>'+
     '<h3>רוצים להוסיף הדרכות?</h3>'+
     '<p>האתר בנוי כך שאפשר להוסיף לו בהמשך מקורות והדרכות נוספים — מסרטוני הסבר ועד מנגנונים שהנבחרת שלנו תפתח בעצמה.</p>'+
     '<h3>הערה משפטית</h3>'+
@@ -624,6 +650,92 @@ function viewProcess(){
     '</div></section>';
 }
 
+/* ---------- מדריך הבלוקים ---------- */
+var SPIKE_CREDIT = '<div class="srcbox"><p>מדריך הבלוקים תורגם לעברית ב‑2025 על ידי <strong>עמית הרדוף מקבוצת שאזם</strong> בעזרת AI. '+
+  'מקור הטקסט באנגלית: <a href="https://primelessons.org/" target="_blank" rel="noopener">primelessons.org</a>. '+
+  'התיאורים מבוססים על תפריט העזרה של SPIKE.</p></div>';
+
+function blockCount(){ var n=0; BLOCKS.forEach(function(c){ n+=c.blocks.length; }); return n; }
+
+function viewBlocks(){
+  var chips = '<button class="chip" type="button" data-c="all" aria-pressed="true">הכול</button>'+
+    BLOCKS.map(function(c){
+      return '<button class="chip" type="button" data-c="'+c.s+'">'+esc(c.h.replace('בלוקי ',''))+'</button>';
+    }).join('');
+
+  var groups = BLOCKS.map(function(c){
+    var cards = c.blocks.map(function(b){
+      var shots = b.imgs.map(function(i){
+        return '<a href="img/blocks/'+i+'" target="_blank" rel="noopener" title="לחצו להגדלה">'+
+          '<img src="img/blocks/'+i+'" alt="'+esc(b.name)+'" loading="lazy"></a>';
+      }).join('');
+      var key = (b.name+' '+b.desc+' '+c.h).toLowerCase();
+      return '<article class="blk" data-c="'+c.s+'" data-k="'+esc(key)+'">'+
+        '<div class="shot">'+shots+'</div>'+
+        '<div class="blk-body">'+
+          '<h3>'+esc(b.name)+'</h3>'+
+          (b.ext ? '<span class="tag">נוסף דרך Extensions</span>' : '')+
+          '<p>'+esc(b.desc)+'</p>'+
+        '</div></article>';
+    }).join('');
+    return '<section class="bgroup" data-c="'+c.s+'">'+
+      '<div class="grouphead"><h3>'+esc(c.h)+'</h3><span>'+c.blocks.length+' בלוקים</span></div>'+
+      (c.note ? '<p class="gnote">'+esc(c.note)+'</p>' : '')+
+      '<div class="blocklist">'+cards+'</div></section>';
+  }).join('');
+
+  return '<section><div class="wrap">'+
+    '<div class="sec-head"><h2>מדריך הבלוקים</h2></div>'+
+    '<p class="sec-sub">כל בלוקי התכנות של Spike Prime, בעברית, עם צילום של הבלוק עצמו. זה עמוד שמחפשים בו: הקלידו מה אתם מנסים לעשות — "מהירות", "חיישן", "לולאה" — או סננו לפי קטגוריה. לחיצה על צילום של בלוק פותחת אותו בגודל מלא.</p>'+
+    SPIKE_CREDIT+
+    '<div class="bsearch">'+
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5 21 21"/></svg>'+
+      '<input id="bq" type="search" placeholder="חיפוש בלוק — לפי שם או לפי מה שהוא עושה…" aria-label="חיפוש בלוק" autocomplete="off">'+
+    '</div>'+
+    '<div class="chips" id="bchips">'+chips+'</div>'+
+    '<p class="bcount" id="bcount"></p>'+
+    '<div id="blist">'+groups+'</div>'+
+    '<div class="nores" id="bnores" hidden><p>לא נמצא בלוק שמתאים לחיפוש. נסו מילה אחרת, או בחרו קטגוריה.</p></div>'+
+    '</div></section>';
+}
+
+function wireBlocks(){
+  var q = $('#bq'), cnt = $('#bcount'), nores = $('#bnores');
+  var chips  = document.querySelectorAll('#bchips .chip');
+  var cards  = document.querySelectorAll('#blist .blk');
+  var groups = document.querySelectorAll('#blist .bgroup');
+  var total  = blockCount(), cat = 'all';
+
+  function apply(){
+    var term = (q.value||'').trim().toLowerCase();
+    var shown = 0;
+    Array.prototype.forEach.call(cards, function(el){
+      var ok = (cat==='all' || el.getAttribute('data-c')===cat) &&
+               (!term || el.getAttribute('data-k').indexOf(term) >= 0);
+      el.hidden = !ok; if(ok) shown++;
+    });
+    Array.prototype.forEach.call(groups, function(g){
+      g.hidden = !g.querySelector('.blk:not([hidden])');
+    });
+    nores.hidden = shown > 0;
+    cnt.textContent = (!term && cat==='all')
+      ? total+' בלוקים ב‑'+BLOCKS.length+' קטגוריות'
+      : (shown===0 ? 'אין תוצאות' : 'מציג '+shown+' מתוך '+total+' בלוקים');
+  }
+
+  Array.prototype.forEach.call(chips, function(ch){
+    ch.addEventListener('click', function(){
+      cat = ch.getAttribute('data-c');
+      Array.prototype.forEach.call(chips, function(x){
+        if(x===ch) x.setAttribute('aria-pressed','true'); else x.removeAttribute('aria-pressed');
+      });
+      apply();
+    });
+  });
+  q.addEventListener('input', apply);
+  apply();
+}
+
 /* ---------- router ---------- */
 function render(){
   var h = (location.hash || '#home').slice(1);
@@ -633,6 +745,7 @@ function render(){
   else if(h==='guide'){ html = viewGuide(); navKey='guide'; }
   else if(h.indexOf('g-')===0){ html = viewChapter(h.slice(2)); navKey='guide'; }
   else if(h==='process'){ html = viewProcess(); navKey='process'; }
+  else if(h==='blocks'){ html = viewBlocks(); navKey='blocks'; }
   else if(h==='learn'){ html = viewLearn(); navKey='learn'; }
   else if(h==='links'){ html = viewLinks(); navKey='links'; }
   else if(h==='about'){ html = viewAbout(); navKey='about'; }
@@ -644,6 +757,7 @@ function render(){
     else a.removeAttribute('aria-current');
   });
   if(h==='learn') wireCalc();
+  if(h==='blocks') wireBlocks();
   window.scrollTo(0,0);
 }
 
