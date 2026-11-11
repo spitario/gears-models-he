@@ -9,6 +9,7 @@ const ROOT = path.join(DIR, '..');
 const clean = require('./data/models.json');
 const he    = require('./he.js');
 const guide = require('./guide.js');
+const blocks= require('./data/blocks.json');
 
 const order = ['changing-rotation-angle','one-way-doors','swinging-mechanisms','worm-gears','first-fll-bioglow-mission-models'];
 
@@ -40,6 +41,7 @@ const data = 'var CATS='  + JSON.stringify(cats)   + ';\n'
            + 'var LINKS=' + JSON.stringify(he.links)+ ';\n'
            + 'var CHAPTERS='+JSON.stringify(guide.chapters)+';\n'
            + 'var PROCESS='+JSON.stringify(guide.process)+';\n'
+           + 'var BLOCKS=' + JSON.stringify(blocks)+ ';\n'
            + 'var PICKS=' + JSON.stringify(pickSlugs)
            + '.map(function(s){return MODELS.find(function(m){return m.s===s;});});';
 
