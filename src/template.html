@@ -81,6 +81,14 @@ button{font:inherit;color:inherit}
 .brand span{display:block;font-family:var(--ff-ui);font-size:11px;color:var(--ink-3);letter-spacing:.04em}
 .teamname{font-family:var(--ff-ui);font-size:12.5px;font-weight:700;color:#6B4E00;background:var(--sch-gold);
   padding:5px 12px;border-radius:999px;white-space:nowrap;flex:0 0 auto}
+.pollbar{background:linear-gradient(90deg,var(--sch-gold),#FFD95E);border-bottom:1px solid var(--line)}
+.pollbar .wrap{display:flex;align-items:center;gap:13px;padding-block:11px;flex-wrap:wrap}
+.pollbar .tag{font-family:var(--ff-ui);font-size:11.5px;font-weight:700;letter-spacing:.05em;color:#F5C518;
+  background:#4A3600;padding:4px 11px;border-radius:999px;flex:0 0 auto}
+.pollbar p{font-size:15px;color:#4A3600;flex:1 1 220px}
+.pollbar p b{font-weight:700}
+.pollbar .btn{background:#4A3600;color:#FFF3C9;border-color:#4A3600;padding:8px 15px;font-size:14.5px;flex:0 0 auto}
+.pollbar .btn:hover{filter:brightness(1.25)}
 .ribbon{height:3px;background:linear-gradient(90deg,var(--sch-sky) 0%,var(--sch-sky) 30%,var(--sch-green) 52%,var(--sch-gold) 76%,var(--sch-gold) 100%)}
 nav.main{display:flex;gap:2px;flex-wrap:wrap;margin-inline-start:auto}
 nav.main a{font-family:var(--ff-ui);font-size:14.5px;font-weight:500;text-decoration:none;color:var(--ink-2);padding:7px 11px;border-radius:8px}
@@ -350,6 +358,10 @@ footer a{color:var(--ink-2)}
    כשייקבע שם לנבחרת — לכתוב אותו כאן בין הגרשיים, להריץ node src/build.js ולדחוף.
    הוא יופיע כתגית זהב בבאנר, ליד שם האתר. כל עוד זה ריק — שום דבר לא מוצג. */
 var TEAM = '';
+
+/* ===== שאלון בחירת השם =====
+   הרצועה בראש עמוד הבית מופיעה כל עוד יש כאן כתובת. לסיום ההצבעה — למחוק את הכתובת. */
+var POLL = 'https://docs.google.com/forms/d/e/1FAIpQLSdY4wFF8OZx673C0dd0cG4j8CNodKN0BHsJ8UHuOnE3Ukf86w/viewform';
 (function(){
   var el = document.getElementById('teamname');
   if(el && TEAM){ el.textContent = TEAM; el.hidden = false; }
@@ -412,7 +424,12 @@ function viewHome(){
       '<span class="count">'+n+' דגמים ←</span></a>';
   }).join('');
 
-  return '<div class="hero"><div class="wrap"><div class="hero-grid"><div>'+
+  return (POLL ? '<div class="pollbar"><div class="wrap">'+
+      '<span class="tag">שם נולד</span>'+
+      '<p><b>עוזרים לבחור שם לנבחרת!</b> השם שייבחר ילווה אותנו בשנים הבאות. פחות מדקה.</p>'+
+      '<a class="btn" href="'+POLL+'" target="_blank" rel="noopener">לשאלון ←</a>'+
+    '</div></div>' : '')+
+    '<div class="hero"><div class="wrap"><div class="hero-grid"><div>'+
     '<div class="eyebrow">מנגנוני לגו טכניק · הוראות בנייה חינם</div>'+
     '<h1>כל מנגנון שתצטרכו לרובוט — מוסבר, מצויר ומוכן לבנייה</h1>'+
     '<p class="lede">אוסף של '+MODELS.length+' מנגנוני גלגלי שיניים ודגמי משימות, עם תמונה של כל דגם, הסבר מה הוא עושה, הוראות בנייה להורדה וקובץ תלת־ממד שאפשר לפתוח ולשנות.</p>'+
