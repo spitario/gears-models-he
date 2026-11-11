@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>תמונת שיתוף</title>
+<!--
+  כרטיס השיתוף (Open Graph) — 1200x630.
+  הפקה:  node src/og.js     (מריץ כרום בלי חלון ושומר img/brand/share.png)
+  הצבעים, הפונטים והגלגלים זהים לאתר עצמו.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Secular+One&family=Assistant:wght@400;600;700&family=Rubik:wght@500;700&display=block">
+<style>
+:root{
+  --surface:#FFFFFF; --surface-2:#F6F8FB; --bg-band:#E3E8EF;
+  --ink:#141C27; --ink-2:#56657A; --ink-3:#8494A8; --line:#D3DBE5;
+  --sch:#205D99; --sch-sky:#29ABE2; --sch-green:#8CC63F; --sch-gold:#F5C518; --sch-tint:#F1F6FB;
+  --accent:#C9411F; --c-angle:#2259C4;
+  --ff-display:"Secular One","Arial Hebrew","Noto Sans Hebrew",system-ui,sans-serif;
+  --ff-ui:"Rubik","Assistant",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{width:1200px;height:630px;overflow:hidden;background:var(--surface);
+     font-family:var(--ff-ui);color:var(--ink);-webkit-font-smoothing:antialiased}
+
+.card{position:relative;width:1200px;height:630px;overflow:hidden;background:var(--surface)}
+
+/* ---- לוח הגלגלים, בצד שמאל, עם תפר אלכסוני ---- */
+.panel{position:absolute;top:0;bottom:0;left:0;width:452px;
+       background:linear-gradient(155deg,#E3EDF8 0%,#D2E0F0 58%,#C6D7EB 100%);
+       clip-path:polygon(0 0,100% 0,calc(100% - 74px) 100%,0 100%)}
+/* רכבת הגלגלים — שלושתם משולבים זה בזה בדיוק כמו באתר,
+   הגדול נחתך בפינה והקטן יושב על התפר, חצי בלוח וחצי בלבן */
+.train{position:absolute;left:-110px;top:60px;width:560px;z-index:3}
+.train svg{width:100%;height:auto;display:block}
+
+/* ---- הטקסט ---- */
+.inner{position:relative;z-index:2;height:100%;padding:54px 64px 58px 516px;
+       display:flex;flex-direction:column}
+
+.logos{display:flex;align-items:center;gap:18px}
+.logos img.school{height:72px}
+.logos img.council{height:54px}
+.vr{width:1px;height:48px;background:var(--line)}
+.org{margin:0;font-size:18px;line-height:1.4;color:var(--sch);font-weight:500}
+.org b{display:block;font-weight:700;font-size:21px;letter-spacing:-.01em}
+
+h1{font-family:var(--ff-display);font-weight:400;margin:40px 0 0;
+   font-size:66px;line-height:1.08;letter-spacing:-.02em;color:var(--sch)}
+h1 span{color:var(--accent)}
+.lede{margin:22px 0 0;font-family:"Assistant",var(--ff-ui);font-weight:400;
+      font-size:25px;line-height:1.45;color:var(--ink-2);max-width:24ch}
+
+.chips{margin-top:auto;display:flex;gap:11px;flex-wrap:wrap}
+.chip{font-family:var(--ff-ui);font-weight:700;font-size:19.5px;padding:10px 18px;border-radius:999px;
+      background:var(--surface-2);border:1px solid var(--line);color:var(--ink);white-space:nowrap}
+.chip.gold{background:var(--sch-gold);border-color:#DCAF0C;color:#6B4E00}
+
+.ribbon{position:absolute;left:0;right:0;bottom:0;height:9px;z-index:4;
+        background:linear-gradient(90deg,var(--sch-sky) 0%,var(--sch-sky) 30%,var(--sch-green) 52%,var(--sch-gold) 76%,var(--sch-gold) 100%)}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="panel"></div>
+  <div class="train" id="train"></div>
+
+  <div class="inner">
+    <div class="logos">
+      <img class="school" src="../img/brand/school.png" alt="">
+      <span class="vr"></span>
+      <img class="council" src="../img/brand/council.png" alt="">
+      <p class="org"><b>נבחרת הרובוטיקה</b>בית ספר מודיעים · נחלים</p>
+    </div>
+
+    <h1>מנגנוני לגו טכניק<br><span>בעברית</span></h1>
+    <p class="lede">כל מנגנון שתצטרכו לרובוט — מוסבר, מצויר ומוכן לבנייה.</p>
+
+    <div class="chips">
+      <span class="chip">48 דגמים</span>
+      <span class="chip">עקרונות בנייה</span>
+      <span class="chip">Spike Prime</span>
+      <span class="chip gold">חינם</span>
+    </div>
+  </div>
+
+  <div class="ribbon"></div>
+</div>
+
+<script>
+/* אותן פונקציות שמייצרות את הגלגלים באתר (src/template.html) */
+function gearPath(n, R, r){
+  var step = Math.PI*2/n, tw = step*0.30, bw = step*0.47, d='';
+  function p(a,rad){ return (Math.cos(a)*rad).toFixed(2)+','+(Math.sin(a)*rad).toFixed(2); }
+  for(var i=0;i<n;i++){
+    var a=i*step;
+    d += (i===0?'M':'L')+p(a-bw,r)+'L'+p(a-tw,R)+'L'+p(a+tw,R)+'L'+p(a+bw,r);
+  }
+  return d+'Z';
+}
+function gearSVG(n, R, color, hubFill){
+  var r = R*0.80, hub = R*0.26;
+  return '<g><path d="'+gearPath(n,R,r)+'" fill="'+color+'"/>'+
+    '<circle r="'+hub.toFixed(1)+'" fill="'+hubFill+'"/>'+
+    '<path d="M'+(-hub*0.62).toFixed(1)+' '+(-hub*0.22).toFixed(1)+'h'+(hub*0.40).toFixed(1)+'v'+(-hub*0.40).toFixed(1)+'h'+(hub*0.44).toFixed(1)+'v'+(hub*0.40).toFixed(1)+'h'+(hub*0.40).toFixed(1)+'v'+(hub*0.44).toFixed(1)+'h'+(-hub*0.40).toFixed(1)+'v'+(hub*0.40).toFixed(1)+'h'+(-hub*0.44).toFixed(1)+'v'+(-hub*0.40).toFixed(1)+'h'+(-hub*0.40).toFixed(1)+'Z" fill="var(--ink-3)"/></g>';
+}
+/* שלושה גלגלים שבאמת משולבים: המרחק בין מרכזים = סכום רדיוסי המהלך (R*0.80) */
+var K = 3.1;
+function R(n){ return Math.max(26, n*K/2); }
+function at(n, deg, fromN, cx, cy){           // מרכז גלגל שמשולב בגלגל שמרכזו (cx,cy)
+  var d = R(fromN)*0.80 + R(n)*0.80, a = deg*Math.PI/180;
+  return { x: cx + Math.cos(a)*d, y: cy + Math.sin(a)*d };
+}
+var blue = { x:0, y:0 };
+var red  = at(24, -60, 40, blue.x, blue.y);
+var gold = at(16,  20, 40, blue.x, blue.y);
+
+var pad = 8;
+var minX = Math.min(blue.x-R(40), red.x-R(24), gold.x-R(16)) - pad;
+var maxX = Math.max(blue.x+R(40), red.x+R(24), gold.x+R(16)) + pad;
+var minY = Math.min(blue.y-R(40), red.y-R(24), gold.y-R(16)) - pad;
+var maxY = Math.max(blue.y+R(40), red.y+R(24), gold.y+R(16)) + pad;
+
+function place(n, c, col, rot, hubFill){
+  return '<g transform="translate('+c.x.toFixed(2)+','+c.y.toFixed(2)+') rotate('+rot+')">'+
+         gearSVG(n, R(n), col, hubFill)+'</g>';
+}
+document.getElementById('train').innerHTML =
+  '<svg viewBox="'+minX.toFixed(1)+' '+minY.toFixed(1)+' '+
+                   (maxX-minX).toFixed(1)+' '+(maxY-minY).toFixed(1)+'">'+
+    place(40, blue, "var(--c-angle)",  4, "#DCE8F5")+
+    place(24, red,  "var(--accent)",  -5, "#DCE8F5")+
+    place(16, gold, 'var(--sch-gold)', 9, '#FFFFFF')+
+  '</svg>';
+</script>
+</body>
+</html>

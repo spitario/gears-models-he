@@ -74,11 +74,39 @@ const body = h.slice(i+8).trim();
 
 const reset = '\n<style>\n:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}\nbody{margin:0}\nimg{max-width:100%}\n[hidden]{display:none!important}\n</style>';
 
+// ---- \u05db\u05e8\u05d8\u05d9\u05e1 \u05d4\u05e9\u05d9\u05ea\u05d5\u05e3: \u05de\u05d4 \u05e9\u05d5\u05d5\u05d0\u05d8\u05e1\u05d0\u05e4, \u05e4\u05d9\u05d9\u05e1\u05d1\u05d5\u05e7 \u05d5\u05d8\u05dc\u05d2\u05e8\u05dd \u05de\u05e6\u05d9\u05d2\u05d9\u05dd \u05db\u05e9\u05de\u05d3\u05d1\u05d9\u05e7\u05d9\u05dd \u05d0\u05ea \u05d4\u05e7\u05d9\u05e9\u05d5\u05e8 ----
+// \u05d4\u05ea\u05de\u05d5\u05e0\u05d4 \u05de\u05d5\u05e4\u05e7\u05ea \u05d1-node src/og.js. \u05d4\u05db\u05ea\u05d5\u05d1\u05d5\u05ea \u05db\u05d0\u05df \u05d7\u05d9\u05d9\u05d1\u05d5\u05ea \u05dc\u05d4\u05d9\u05d5\u05ea \u05de\u05dc\u05d0\u05d5\u05ea \u05d5\u05dc\u05d0 \u05d9\u05d7\u05e1\u05d9\u05d5\u05ea.
+const BASE  = 'https://spitario.github.io/gears-models-he/';
+const SHARE = {
+  title: '\u05de\u05e0\u05d2\u05e0\u05d5\u05e0\u05d9 \u05dc\u05d2\u05d5 \u05d8\u05db\u05e0\u05d9\u05e7 \u05d1\u05e2\u05d1\u05e8\u05d9\u05ea | \u05e0\u05d1\u05d7\u05e8\u05ea \u05d4\u05e8\u05d5\u05d1\u05d5\u05d8\u05d9\u05e7\u05d4, \u05d1\u05d9\u05ea \u05e1\u05e4\u05e8 \u05de\u05d5\u05d3\u05d9\u05e2\u05d9\u05dd',
+  desc : '\u05db\u05dc \u05de\u05e0\u05d2\u05e0\u05d5\u05df \u05e9\u05ea\u05e6\u05d8\u05e8\u05db\u05d5 \u05dc\u05e8\u05d5\u05d1\u05d5\u05d8 \u2014 \u05de\u05d5\u05e1\u05d1\u05e8, \u05de\u05e6\u05d5\u05d9\u05e8 \u05d5\u05de\u05d5\u05db\u05df \u05dc\u05d1\u05e0\u05d9\u05d9\u05d4. '
+       + models.length + ' \u05d3\u05d2\u05de\u05d9\u05dd \u05e2\u05dd \u05d4\u05d5\u05e8\u05d0\u05d5\u05ea \u05d1\u05e0\u05d9\u05d9\u05d4 \u05dc\u05d4\u05d5\u05e8\u05d3\u05d4, \u05e2\u05e7\u05e8\u05d5\u05e0\u05d5\u05ea \u05d1\u05e0\u05d9\u05d9\u05d4, \u05e0\u05d4\u05d9\u05d2\u05d4 \u05de\u05d3\u05d5\u05d9\u05e7\u05ea '
+       + '\u05d5\u05de\u05d3\u05e8\u05d9\u05da \u05d4\u05d1\u05dc\u05d5\u05e7\u05d9\u05dd \u05e9\u05dc Spike Prime. \u05d4\u05db\u05d5\u05dc \u05d7\u05d9\u05e0\u05dd, \u05d1\u05e2\u05d1\u05e8\u05d9\u05ea.',
+  img  : BASE + 'img/brand/share.png',
+  alt  : '\u05e9\u05dc\u05d5\u05e9\u05d4 \u05d2\u05dc\u05d2\u05dc\u05d9 \u05e9\u05d9\u05e0\u05d9\u05d9\u05dd \u05de\u05e9\u05d5\u05dc\u05d1\u05d9\u05dd, \u05dc\u05d5\u05d2\u05d5 \u05d1\u05d9\u05ea \u05e1\u05e4\u05e8 \u05de\u05d5\u05d3\u05d9\u05e2\u05d9\u05dd \u05d5\u05dc\u05d5\u05d2\u05d5 \u05de\u05d5\u05e2\u05e6\u05d4 \u05d0\u05d6\u05d5\u05e8\u05d9\u05ea \u05d7\u05d1\u05dc \u05de\u05d5\u05d3\u05d9\u05e2\u05d9\u05df',
+};
+const og = [
+  ['description', SHARE.desc, 'name'],
+  ['og:type', 'website'], ['og:site_name', '\u05de\u05e0\u05d2\u05e0\u05d5\u05e0\u05d9 \u05dc\u05d2\u05d5 \u05d8\u05db\u05e0\u05d9\u05e7 \u05d1\u05e2\u05d1\u05e8\u05d9\u05ea'], ['og:locale', 'he_IL'],
+  ['og:url', BASE], ['og:title', SHARE.title], ['og:description', SHARE.desc],
+  ['og:image', SHARE.img], ['og:image:secure_url', SHARE.img], ['og:image:type', 'image/png'],
+  ['og:image:width', '1200'], ['og:image:height', '630'], ['og:image:alt', SHARE.alt],
+  ['twitter:card', 'summary_large_image', 'name'],
+  ['twitter:title', SHARE.title, 'name'],
+  ['twitter:description', SHARE.desc, 'name'],
+  ['twitter:image', SHARE.img, 'name'],
+].map(([k, v, attr]) =>
+  '<meta ' + (attr || 'property') + '="' + k + '" content="' + String(v).replace(/"/g, '&quot;') + '">'
+).join('\n');
+
 const out = '<!doctype html>\n<html lang="he" dir="rtl">\n<head>\n<meta charset="utf-8">\n'
   + '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
-  + '<meta name="description" content="\u05de\u05e0\u05d2\u05e0\u05d5\u05e0\u05d9 \u05dc\u05d2\u05d5 \u05d8\u05db\u05e0\u05d9\u05e7 \u05d1\u05e2\u05d1\u05e8\u05d9\u05ea \u05dc\u05e0\u05d1\u05d7\u05e8\u05ea \u05d4\u05e8\u05d5\u05d1\u05d5\u05d8\u05d9\u05e7\u05d4 \u05e9\u05dc \u05d1\u05d9\u05ea \u05e1\u05e4\u05e8 \u05de\u05d5\u05d3\u05d9\u05e2\u05d9\u05dd.">\n'
+  + og + '\n'
+  + '<link rel="canonical" href="' + BASE + '">\n'
   + '<link rel="icon" href="img/brand/school.png">\n'
-  + reset + '\n' + head + '\n</head>\n<body>\n' + body + '\n</body>\n</html>\n';
+  + reset + '\n'
+  + head.replace('<title>גלגלי שיניים ודגמים</title>', '<title>' + SHARE.title + '</title>')
+  + '\n</head>\n<body>\n' + body + '\n</body>\n</html>\n';
 
 fs.writeFileSync(path.join(ROOT,'index.html'), out);
 console.log('index.html  |  דגמים', models.length, '| בתים', out.length);
