@@ -190,6 +190,9 @@ section{padding-block:clamp(30px,5vw,52px)}
 .fig{margin-top:18px;background:var(--plate);border:1px solid var(--plate-line);border-radius:13px;padding:10px}
 .fig img{display:block;width:100%;border-radius:8px;background:#fff}
 .fig figcaption{font-family:var(--ff-ui);font-size:13px;color:var(--ink-2);padding:10px 6px 2px;text-align:center}
+.fig .src{font-family:var(--ff-ui);font-size:11.5px;color:var(--ink-3);margin-top:3px;padding-bottom:3px;text-align:center}
+.fig > img + .src{margin-top:10px}
+.listsrc{font-family:var(--ff-ui);font-size:12.5px;color:var(--ink-3);margin-top:6px}
 .srcbox{background:var(--surface-2);border:1px solid var(--line);border-inline-start:4px solid var(--bin,var(--accent));border-radius:12px;padding:15px 17px;margin-bottom:22px}
 .srcbox p{font-size:14.5px;color:var(--ink-2)}
 .srcbox strong{color:var(--ink)}
@@ -572,7 +575,7 @@ function viewAbout(){
     '<p>שני העמודים האלה הגיעו ממקורות אחרים, ואנחנו אסירי תודה עליהם. פרק <a href="#guide">עקרונות הבנייה</a> מבוסס על ההרצאה "עקרונות בנייה יסודיים ב‑FLL" של <strong>נועם, עופרי ושיר מנבחרת הג׳ירפות</strong> והמנטור <strong>יובל גור</strong> — קבוצה שהעפילה פעמיים לתחרות העולמית ודורגה במקום השני בעולם בתכנון הרובוט. עמוד <a href="#process">תהליך הפיתוח</a> מבוסס על הרצאת אורח של <strong>שי, מהנדס מכונות</strong> בתחום התעופה והחלל.</p>'+
     '<p>הטקסט נכתב כאן מחדש והותאם לכיתות ה׳–ו׳, והתמונות הן שקופיות מקוריות מההרצאות.</p>'+
     '<h3>מדריך הבלוקים</h3>'+
-    '<p><a href="#blocks">מדריך הבלוקים</a> תורגם לעברית ב‑2025 על ידי <strong>עמית הרדוף מקבוצת שאזם</strong> בעזרת AI. מקור הטקסט באנגלית: <a href="https://primelessons.org/" target="_blank" rel="noopener">primelessons.org</a>. התיאורים מבוססים על תפריט העזרה של SPIKE.</p>'+
+    '<p><a href="#blocks">מדריך הבלוקים</a> <strong>תורגם ב‑2025 לעברית ע״י AI ועמית הרדוף מקבוצת שאזם</strong>. מקור הטקסט באנגלית: <a href="https://primelessons.org/" target="_blank" rel="noopener">primelessons.org</a>. התיאורים מבוססים על תפריט העזרה של SPIKE.</p>'+
     '<h3>רוצים להוסיף הדרכות?</h3>'+
     '<p>האתר בנוי כך שאפשר להוסיף לו בהמשך מקורות והדרכות נוספים — מסרטוני הסבר ועד מנגנונים שהנבחרת שלנו תפתח בעצמה.</p>'+
     '<h3>הערה משפטית</h3>'+
@@ -582,10 +585,17 @@ function viewAbout(){
 
 
 /* ---------- עקרונות בנייה ---------- */
+var FIG_SRC = {
+  build:   'שקופית מתוך ההרצאה של נבחרת הג׳ירפות',
+  process: 'שקופית מתוך הרצאת האורח של שי, מהנדס מכונות',
+  blocks:  'מתוך מדריך הבלוקים בעברית'
+};
 function figure(dir,img,cap){
   if(!img) return '';
   return '<figure class="fig"><img src="img/'+dir+'/'+img+'.jpg" alt="'+esc(cap||'')+'" loading="lazy">'+
-    (cap ? '<figcaption>'+esc(cap)+'</figcaption>' : '')+'</figure>';
+    (cap ? '<figcaption>'+esc(cap)+'</figcaption>' : '')+
+    (FIG_SRC[dir] ? '<p class="src">'+esc(FIG_SRC[dir])+'</p>' : '')+
+    '</figure>';
 }
 function stepsGrid(){
   var steps=['זיהוי הצורך או הבעיה','מחקר מעמיק','הגדרת דרישות','סקר חלופות ופתרונות','אב־טיפוס','בדיקות וניסויים','תיקון בעיות (תמיד!)','בדיקות נוספות'];
@@ -622,6 +632,7 @@ function viewChapter(slug){
   return '<section><div class="wrap">'+
     '<a class="back" href="#guide">→ חזרה לכל הפרקים</a>'+
     '<div class="chips">'+chips+'</div>'+
+    GIRAFFES+
     '<div class="sec-head"><h2>'+esc(c.he)+'</h2></div>'+
     '<p class="sec-sub">'+esc(c.lead)+'</p>'+
     c.secs.map(function(s){ return secBlock('build',s); }).join('')+
@@ -651,7 +662,7 @@ function viewProcess(){
 }
 
 /* ---------- מדריך הבלוקים ---------- */
-var SPIKE_CREDIT = '<div class="srcbox"><p>מדריך הבלוקים תורגם לעברית ב‑2025 על ידי <strong>עמית הרדוף מקבוצת שאזם</strong> בעזרת AI. '+
+var SPIKE_CREDIT = '<div class="srcbox"><p>מדריך הבלוקים <strong>תורגם ב‑2025 לעברית ע״י AI ועמית הרדוף מקבוצת שאזם</strong>. '+
   'מקור הטקסט באנגלית: <a href="https://primelessons.org/" target="_blank" rel="noopener">primelessons.org</a>. '+
   'התיאורים מבוססים על תפריט העזרה של SPIKE.</p></div>';
 
@@ -695,6 +706,7 @@ function viewBlocks(){
     '<div class="chips" id="bchips">'+chips+'</div>'+
     '<p class="bcount" id="bcount"></p>'+
     '<div id="blist">'+groups+'</div>'+
+    '<p class="listsrc">כל צילומי הבלוקים והתיאורים בעמוד הזה — מתוך מדריך הבלוקים בעברית, שתורגם ב‑2025 ע״י AI ועמית הרדוף מקבוצת שאזם, על בסיס primelessons.org.</p>'+
     '<div class="nores" id="bnores" hidden><p>לא נמצא בלוק שמתאים לחיפוש. נסו מילה אחרת, או בחרו קטגוריה.</p></div>'+
     '</div></section>';
 }
