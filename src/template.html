@@ -245,6 +245,8 @@ section{padding-block:clamp(30px,5vw,52px)}
 .empty{background:var(--surface);border:1px dashed var(--line-2);border-radius:14px;padding:30px;text-align:center;color:var(--ink-2)}
 .fig{margin-top:18px;background:var(--plate);border:1px solid var(--plate-line);border-radius:13px;padding:10px}
 .fig img{display:block;width:100%;border-radius:8px;background:#fff}
+.svgfig{background:var(--surface-2);border-color:var(--line)}
+.svgfig svg{display:block;width:100%;height:auto;border-radius:8px}
 .fig figcaption{font-family:var(--ff-ui);font-size:13px;color:var(--ink-2);padding:10px 6px 2px;text-align:center}
 .fig .src{font-family:var(--ff-ui);font-size:11.5px;color:var(--ink-3);margin-top:3px;padding-bottom:3px;text-align:center}
 .fig > img + .src{margin-top:10px}
@@ -323,6 +325,7 @@ footer a{color:var(--ink-2)}
     <nav class="main" id="nav">
       <a href="#home">בית</a>
       <a href="#guide">עקרונות בנייה</a>
+      <a href="#drive">נהיגה מדויקת</a>
       <a href="#learn">איך זה עובד</a>
       <a href="#process">תהליך הפיתוח</a>
       <a href="#blocks">מדריך הבלוקים</a>
@@ -741,6 +744,36 @@ function viewChapter(slug){
     '</div></div></section>';
 }
 
+/* ---------- נהיגה מדויקת ---------- */
+var BEYOND = '<div class="srcbox" style="--bin:var(--c-angle)">'+
+  '<p>הפרק הזה מבוסס על הרעיונות שבמסמך <strong>Beyond PID</strong> שמסתובב בקהילת ה‑FLL, ונכתב כאן מחדש לכיתות ה׳–ו׳: '+
+  'רק בקרה פרופורציונלית, תאוצה וסוגי פנייה. המסמך המקורי ממשיך הרבה מעבר לזה — עד PID מלא, קשתות ותכנות ב‑Python. '+
+  '<strong>מחבר המסמך אינו ידוע לנו</strong>, ואם מישהו מזהה אותו — נשמח לתת קרדיט מלא.</p></div>';
+
+function figSvg(name,cap){
+  var svg = DRIVESVG[name];
+  if(!svg) return '';
+  return '<figure class="fig svgfig">'+svg+(cap ? '<figcaption>'+esc(cap)+'</figcaption>' : '')+'</figure>';
+}
+
+function viewDrive(){
+  var D = DRIVE;
+  var body = D.secs.map(function(s){
+    return '<div class="lesson"><h2>'+esc(s.h)+'</h2>'+
+      s.p.map(function(x){ return '<p>'+x+'</p>'; }).join('')+
+      (s.svg ? figSvg(s.svg, s.cap) : '')+'</div>';
+  }).join('');
+  return '<section><div class="wrap">'+
+    '<div class="sec-head"><h2>נהיגה מדויקת</h2></div>'+
+    '<p class="sec-sub">'+esc(D.lead)+'</p>'+
+    BEYOND + body +
+    '<div class="lesson"><h2>'+esc(D.outro.h)+'</h2>'+
+      D.outro.p.map(function(x){ return '<p>'+x+'</p>'; }).join('')+'</div>'+
+    '<div class="dl"><a class="btn primary" href="#blocks">למדריך הבלוקים ←</a>'+
+      '<a class="btn" href="#guide">לעקרונות הבנייה</a></div>'+
+    '</div></section>';
+}
+
 /* ---------- תהליך הפיתוח ---------- */
 function viewProcess(){
   var P = PROCESS;
@@ -884,6 +917,7 @@ function render(){
   else if(h.indexOf('m-')===0){ html = viewModel(h.slice(2)); navKey='home'; }
   else if(h==='guide'){ html = viewGuide(); navKey='guide'; }
   else if(h.indexOf('g-')===0){ html = viewChapter(h.slice(2)); navKey='guide'; }
+  else if(h==='drive'){ html = viewDrive(); navKey='drive'; }
   else if(h==='process'){ html = viewProcess(); navKey='process'; }
   else if(h==='blocks'){ html = viewBlocks(); navKey='blocks'; }
   else if(h==='learn'){ html = viewLearn(); navKey='learn'; }

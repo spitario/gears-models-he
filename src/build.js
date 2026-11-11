@@ -9,6 +9,7 @@ const ROOT = path.join(DIR, '..');
 const clean = require('./data/models.json');
 const he    = require('./he.js');
 const guide = require('./guide.js');
+const dr    = require('./drive.js');
 const blocks= require('./data/blocks.json');
 const cr    = require('./credits.js');
 
@@ -42,6 +43,8 @@ const data = 'var CATS='  + JSON.stringify(cats)   + ';\n'
            + 'var LINKS=' + JSON.stringify(he.links)+ ';\n'
            + 'var CHAPTERS='+JSON.stringify(guide.chapters)+';\n'
            + 'var PROCESS='+JSON.stringify(guide.process)+';\n'
+           + 'var DRIVE='+JSON.stringify(dr.drive)+';\n'
+           + 'var DRIVESVG='+JSON.stringify(dr.S)+';\n'
            + 'var BLOCKS=' + JSON.stringify(blocks)+ ';\n'
            + 'var CREDITS='+ JSON.stringify(cr.credits)+ ';\n'
            + 'var THANKS_INTRO='+JSON.stringify(cr.thanksIntro)+';\n'
