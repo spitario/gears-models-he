@@ -74,7 +74,7 @@ const reset = '\n<style>\n:root{color-scheme:light;padding-top:env(safe-area-ins
 const out = '<!doctype html>\n<html lang="he" dir="rtl">\n<head>\n<meta charset="utf-8">\n'
   + '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
   + '<meta name="description" content="\u05de\u05e0\u05d2\u05e0\u05d5\u05e0\u05d9 \u05dc\u05d2\u05d5 \u05d8\u05db\u05e0\u05d9\u05e7 \u05d1\u05e2\u05d1\u05e8\u05d9\u05ea \u05dc\u05e0\u05d1\u05d7\u05e8\u05ea \u05d4\u05e8\u05d5\u05d1\u05d5\u05d8\u05d9\u05e7\u05d4 \u05e9\u05dc \u05d1\u05d9\u05ea \u05e1\u05e4\u05e8 \u05de\u05d5\u05d3\u05d9\u05e2\u05d9\u05dd.">\n'
-  + '<link rel="icon" href="img/logo.jpg">\n'
+  + '<link rel="icon" href="img/brand/school.png">\n'
   + reset + '\n' + head + '\n</head>\n<body>\n' + body + '\n</body>\n</html>\n';
 
 fs.writeFileSync(path.join(ROOT,'index.html'), out);
