@@ -61,6 +61,12 @@ nav.main{display:flex;gap:2px;flex-wrap:wrap;margin-inline-start:auto}
 nav.main a{font-family:var(--ff-ui);font-size:14.5px;font-weight:500;text-decoration:none;color:var(--ink-2);padding:7px 11px;border-radius:8px}
 nav.main a:hover{background:var(--surface-2);color:var(--ink)}
 nav.main a[aria-current]{background:var(--accent-soft);color:var(--accent)}
+@media (max-width:760px){
+  .top .wrap{gap:9px;padding-block:8px}
+  nav.main{gap:0;order:3;width:100%;margin-inline-start:0;justify-content:flex-start}
+  nav.main a{font-size:13px;padding:5px 7px;border-radius:7px}
+  .searchbox{max-width:none}
+}
 .searchbox{position:relative;flex:1 1 180px;min-width:150px;max-width:280px}
 .searchbox input{width:100%;font:inherit;font-size:15px;padding:8px 34px 8px 12px;border:1px solid var(--line-2);border-radius:10px;background:var(--surface-2);color:var(--ink)}
 .searchbox input::placeholder{color:var(--ink-3)}
@@ -193,6 +199,16 @@ section{padding-block:clamp(30px,5vw,52px)}
 .fig .src{font-family:var(--ff-ui);font-size:11.5px;color:var(--ink-3);margin-top:3px;padding-bottom:3px;text-align:center}
 .fig > img + .src{margin-top:10px}
 .listsrc{font-family:var(--ff-ui);font-size:12.5px;color:var(--ink-3);margin-top:6px}
+.thx{border-inline-start-width:4px!important;border-inline-start-style:solid!important}
+.thx .who{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.thx .who h2{font-size:clamp(19px,2.6vw,24px)}
+.thx .pill{font-family:var(--ff-ui);font-size:11.5px;font-weight:700;letter-spacing:.04em;padding:3px 9px;border-radius:999px;color:var(--thx);background:color-mix(in srgb, var(--thx) 13%, transparent)}
+.thx .where{font-family:var(--ff-ui);font-size:13.5px;color:var(--ink-3);margin-top:3px}
+.gave{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}
+.gave span{font-family:var(--ff-ui);font-size:12.5px;color:var(--ink-2);background:var(--surface-2);border:1px solid var(--line);border-radius:999px;padding:5px 11px}
+.thx .go{margin-top:14px}
+.srcbox .more{display:inline-block;font-family:var(--ff-ui);font-size:13px;font-weight:500;color:var(--accent);text-decoration:none;margin-top:7px}
+.srcbox .more:hover{text-decoration:underline}
 .srcbox{background:var(--surface-2);border:1px solid var(--line);border-inline-start:4px solid var(--bin,var(--accent));border-radius:12px;padding:15px 17px;margin-bottom:22px}
 .srcbox p{font-size:14.5px;color:var(--ink-2)}
 .srcbox strong{color:var(--ink)}
@@ -243,6 +259,7 @@ footer a{color:var(--ink-2)}
       <a href="#blocks">מדריך הבלוקים</a>
       <a href="#links">מקורות</a>
       <a href="#about">על האתר</a>
+      <a href="#thanks">תודות</a>
     </nav>
     <div class="searchbox">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5 21 21"/></svg>
@@ -566,16 +583,8 @@ function viewAbout(){
   return '<section><div class="wrap"><div class="prose">'+
     '<div class="sec-head"><h2>על האתר הזה</h2></div>'+
     '<p>האתר הזה הוא גרסה עברית של <a href="https://www.gearsandmodels.org/" target="_blank" rel="noopener">gearsandmodels.org</a>, שנבנתה עבור נבחרת הרובוטיקה של בית ספר מודיעים. כל הדגמים, התמונות, הוראות הבנייה וקבצי התלת־ממד הם של הקבוצה שיצרה אותם — אנחנו רק תרגמנו והסברנו.</p>'+
-    '<h3>מי בנה את הדגמים</h3>'+
-    '<p>את כל המנגנונים תכננה ובנתה קבוצת <strong>Desert Capybaras #3000</strong> מאופקים, קבוצת FIRST LEGO League שמשתתפת בתחרות ה‑FLL Challenge. האתר שלהם נוצר כחלק מפרויקט ערכי הליבה של הקבוצה, במטרה לשתף את המנגנונים שהם תכננו עם קבוצות אחרות.</p>'+
-    '<p>זו בדיוק רוח ה‑FLL: קבוצה אחת משקיעה חודשים בפיתוח מנגנון, ואז נותנת אותו במתנה לכל השאר.</p>'+
-    '<h3>מה עשינו כאן</h3>'+
-    '<p>תרגמנו את שמות הדגמים לעברית, הוספנו לכל מנגנון הסבר קצר על מה הוא עושה ומתי כדאי להשתמש בו, חישבנו את יחסי ההעברה, והוספנו עמוד לימוד על גלגלי שיניים. הקבצים להורדה עדיין מגיעים מהאתר המקורי.</p>'+
-    '<h3>עקרונות הבנייה ותהליך הפיתוח</h3>'+
-    '<p>שני העמודים האלה הגיעו ממקורות אחרים, ואנחנו אסירי תודה עליהם. פרק <a href="#guide">עקרונות הבנייה</a> מבוסס על ההרצאה "עקרונות בנייה יסודיים ב‑FLL" של <strong>נועם, עופרי ושיר מנבחרת הג׳ירפות</strong> והמנטור <strong>יובל גור</strong> — קבוצה שהעפילה פעמיים לתחרות העולמית ודורגה במקום השני בעולם בתכנון הרובוט. עמוד <a href="#process">תהליך הפיתוח</a> מבוסס על הרצאת אורח של <strong>שי, מהנדס מכונות</strong> בתחום התעופה והחלל.</p>'+
-    '<p>הטקסט נכתב כאן מחדש והותאם לכיתות ה׳–ו׳, והתמונות הן שקופיות מקוריות מההרצאות.</p>'+
-    '<h3>מדריך הבלוקים</h3>'+
-    '<p><a href="#blocks">מדריך הבלוקים</a> <strong>תורגם ב‑2025 לעברית ע״י AI ועמית הרדוף מקבוצת שאזם</strong>. מקור הטקסט באנגלית: <a href="https://primelessons.org/" target="_blank" rel="noopener">primelessons.org</a>. התיאורים מבוססים על תפריט העזרה של SPIKE.</p>'+
+    '<h3>מאיפה הגיע כל מה שכאן</h3>'+
+    '<p>כמעט כל התוכן באתר — המנגנונים, השקופיות, מדריך הבלוקים — נוצר על ידי קבוצות, מנטורים ומתנדבים אחרים שנתנו אותו בחינם. <a href="#thanks">עמוד התודות</a> מפרט בדיוק של מי כל חלק, ומה אנחנו עשינו כאן.</p>'+
     '<h3>רוצים להוסיף הדרכות?</h3>'+
     '<p>האתר בנוי כך שאפשר להוסיף לו בהמשך מקורות והדרכות נוספים — מסרטוני הסבר ועד מנגנונים שהנבחרת שלנו תפתח בעצמה.</p>'+
     '<h3>הערה משפטית</h3>'+
@@ -608,7 +617,8 @@ function secBlock(dir,s){
 }
 var GIRAFFES = '<div class="srcbox"><p>הפרקים האלה מבוססים על ההרצאה <strong>"עקרונות בנייה יסודיים ב‑FLL"</strong> של '+
   '<strong>נועם, עופרי ושיר מנבחרת הג׳ירפות</strong>, יחד עם המנטור <strong>יובל גור</strong> — קבוצה שהעפילה פעמיים לתחרות העולמית '+
-  'ודורגה במקום השני בעולם בתכנון הרובוט. התמונות הן שקופיות מקוריות מההרצאה שלהם. תודה!</p></div>';
+  'ודורגה במקום השני בעולם בתכנון הרובוט. התמונות הן שקופיות מקוריות מההרצאה שלהם. תודה!</p>'+
+  '<a class="more" href="#thanks">כל התודות ←</a></div>';
 
 function viewGuide(){
   var cards = CHAPTERS.map(function(c){
@@ -648,7 +658,8 @@ function viewProcess(){
   return '<section><div class="wrap">'+
     '<div class="sec-head"><h2>מרעיון משוגע למציאות</h2></div>'+
     '<p class="sec-sub">'+esc(P.lead)+'</p>'+
-    '<div class="srcbox"><p>העמוד הזה מבוסס על הרצאת אורח של <strong>שי, מהנדס מכונות</strong>, שעובד בחברה שמובילה פרויקטים בתחום התעופה והחלל. תודה על הביקור!</p></div>'+
+    '<div class="srcbox"><p>העמוד הזה מבוסס על הרצאת אורח של <strong>שי, מהנדס מכונות</strong>, שעובד בחברה שמובילה פרויקטים בתחום התעופה והחלל. תודה על הביקור!</p>'+
+    '<a class="more" href="#thanks">כל התודות ←</a></div>'+
     '<div class="lesson">'+P.intro.map(function(x){return '<p>'+x+'</p>';}).join('')+
     '</div>'+
     P.secs.map(function(s){ return secBlock('process',s); }).join('')+
@@ -664,7 +675,8 @@ function viewProcess(){
 /* ---------- מדריך הבלוקים ---------- */
 var SPIKE_CREDIT = '<div class="srcbox"><p>מדריך הבלוקים <strong>תורגם ב‑2025 לעברית ע״י AI ועמית הרדוף מקבוצת שאזם</strong>. '+
   'מקור הטקסט באנגלית: <a href="https://primelessons.org/" target="_blank" rel="noopener">primelessons.org</a>. '+
-  'התיאורים מבוססים על תפריט העזרה של SPIKE.</p></div>';
+  'התיאורים מבוססים על תפריט העזרה של SPIKE.</p>'+
+  '<a class="more" href="#thanks">כל התודות ←</a></div>';
 
 function blockCount(){ var n=0; BLOCKS.forEach(function(c){ n+=c.blocks.length; }); return n; }
 
@@ -748,6 +760,33 @@ function wireBlocks(){
   apply();
 }
 
+/* ---------- תודות ---------- */
+function viewThanks(){
+  var cards = CREDITS.map(function(c){
+    var gave = (c.gave && c.gave.length)
+      ? '<div class="gave">'+c.gave.map(function(g){ return '<span>'+esc(g)+'</span>'; }).join('')+'</div>' : '';
+    var link = c.link
+      ? '<div class="go"><a class="btn" href="'+c.link.url+'" target="_blank" rel="noopener">'+esc(c.link.t)+' ↗</a></div>' : '';
+    var note = c.note ? '<p class="srcnote">'+esc(c.note)+'</p>' : '';
+    return '<div class="lesson thx" style="--thx:'+c.color+';border-inline-start-color:'+c.color+'">'+
+      '<div class="who"><h2>'+esc(c.who)+'</h2><span class="pill">'+esc(c.what)+'</span></div>'+
+      '<p class="where">'+esc(c.where)+'</p>'+
+      c.p.map(function(x){ return '<p>'+x+'</p>'; }).join('')+
+      gave + link + note +
+      '</div>';
+  }).join('');
+
+  return '<section><div class="wrap">'+
+    '<div class="sec-head"><h2>תודות</h2></div>'+
+    '<p class="sec-sub">'+THANKS_INTRO.map(function(x){ return x; }).join('<br>')+'</p>'+
+    cards+
+    '<div class="lesson"><h2>'+esc(THANKS_OUTRO.h)+'</h2>'+
+      THANKS_OUTRO.p.map(function(x){ return '<p>'+x+'</p>'; }).join('')+
+    '</div>'+
+    '<p class="srcnote">'+esc(LEGAL)+'</p>'+
+    '</div></section>';
+}
+
 /* ---------- router ---------- */
 function render(){
   var h = (location.hash || '#home').slice(1);
@@ -761,6 +800,7 @@ function render(){
   else if(h==='learn'){ html = viewLearn(); navKey='learn'; }
   else if(h==='links'){ html = viewLinks(); navKey='links'; }
   else if(h==='about'){ html = viewAbout(); navKey='about'; }
+  else if(h==='thanks'){ html = viewThanks(); navKey='thanks'; }
   else { html = viewHome(); }
   $('#view').innerHTML = html;
   var qi = $('#q'); if(qi && qi.value && h==='home'){ /* keep */ }
