@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="מנגנוני לגו טכניק בעברית לנבחרת הרובוטיקה של בית ספר מודיעים.">
-<link rel="icon" href="img/logo.jpg">
+<link rel="icon" href="img/brand/school.png">
 
 <style>
 :root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -24,6 +24,8 @@ img{max-width:100%}
   --ink:#141C27; --ink-2:#56657A; --ink-3:#8494A8;
   --line:#D3DBE5; --line-2:#BFCAD8;
   --accent:#C9411F; --accent-ink:#FFFFFF; --accent-soft:#FBE8E2;
+  /* צבעי הזהות של בית הספר והמועצה — מהלוגואים ומאתר בית הספר */
+  --sch:#205D99; --sch-soft:#E4EEF8; --sch-sky:#29ABE2; --sch-green:#8CC63F; --sch-gold:#F5C518; --sch-tint:#F1F6FB;
   --plate:#E5E4E1; --plate-line:#D2D1CE;
   --c-angle:#2259C4; --c-door:#B73328; --c-swing:#26764C; --c-worm:#6B3FB0; --c-mission:#A96C05;
   --shadow:0 1px 2px rgba(17,28,45,.06), 0 8px 24px -14px rgba(17,28,45,.28);
@@ -39,6 +41,7 @@ img{max-width:100%}
   --ink:#E9EEF5; --ink-2:#A3B2C4; --ink-3:#74849A;
   --line:#2A3542; --line-2:#3A4858;
   --accent:#FF7A55; --accent-ink:#1A0E09; --accent-soft:#33201A;
+  --sch:#8FBCE8; --sch-soft:#1D2A38; --sch-sky:#29ABE2; --sch-green:#8CC63F; --sch-gold:#F5C518; --sch-tint:#151E29;
   --c-angle:#7AA6F5; --c-door:#F08B7E; --c-swing:#6ECB98; --c-worm:#B894F0; --c-mission:#E7B14A;
   --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -16px rgba(0,0,0,.8);
   color-scheme:dark;
@@ -48,6 +51,7 @@ img{max-width:100%}
   --ink:#E9EEF5; --ink-2:#A3B2C4; --ink-3:#74849A;
   --line:#2A3542; --line-2:#3A4858;
   --accent:#FF7A55; --accent-ink:#1A0E09; --accent-soft:#33201A;
+  --sch:#8FBCE8; --sch-soft:#1D2A38; --sch-sky:#29ABE2; --sch-green:#8CC63F; --sch-gold:#F5C518; --sch-tint:#151E29;
   --c-angle:#7AA6F5; --c-door:#F08B7E; --c-swing:#6ECB98; --c-worm:#B894F0; --c-mission:#E7B14A;
   --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -16px rgba(0,0,0,.8);
   color-scheme:dark;
@@ -64,16 +68,37 @@ button{font:inherit;color:inherit}
 .wrap{max-width:1120px;margin-inline:auto;padding-left:var(--gut-l);padding-right:var(--gut-r)}
 
 /* ---------- header ---------- */
-.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--surface);border-bottom:1px solid var(--line)}
-.top .wrap{display:flex;align-items:center;gap:14px;padding-block:10px;flex-wrap:wrap}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex:0 0 auto}
-.brand img{width:38px;height:38px;border-radius:9px;background:var(--plate)}
-.brand b{font-family:var(--ff-display);font-size:19px;font-weight:400;letter-spacing:-.01em;white-space:nowrap}
+/* display:contents — כך ש-.stickybar נדבק ביחס לעמוד ולא ביחס לגובה הכותרת בלבד */
+.top{display:contents}
+/* סרגל הזהות נגלל החוצה; רק סרגל הניווט נדבק למעלה */
+.stickybar{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--surface)}
+/* הסרגל העליון — זהות בית הספר והמועצה */
+.orgbar{background:var(--sch-tint);border-bottom:1px solid var(--line)}
+.orgbar .wrap{display:flex;align-items:center;gap:12px;padding-block:7px}
+/* הלוגואים יושבים על לוח לבן — שניהם מודפסים בכחול כהה וחייבים רקע בהיר גם במצב כהה */
+.orgbar .logos{display:flex;align-items:center;gap:11px;background:#FFFFFF;border:1px solid var(--line);
+  border-radius:9px;padding:5px 11px;flex:0 0 auto}
+.orgbar img{display:block;width:auto}
+.orgbar .l-school{height:28px}
+.orgbar .l-council{height:23px}
+.orgbar .vr{width:1px;height:20px;background:#D3DBE5;flex:0 0 auto}
+.orgbar p{font-family:var(--ff-ui);font-size:11.5px;line-height:1.45;color:var(--sch);margin-inline-start:auto;text-align:start}
+.orgbar p b{display:block;font-weight:700}
+.orgbar p span{color:var(--ink-3)}
+@media (max-width:620px){.orgbar p{display:none}}
+/* הסרגל הראשי */
+.top .wrap.mainbar{display:flex;align-items:center;gap:14px;padding-block:10px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex:0 0 auto}
+.brand .mark{width:40px;height:40px;flex:0 0 auto}
+.brand b{font-family:var(--ff-display);font-size:19.5px;font-weight:400;letter-spacing:-.01em;white-space:nowrap;color:var(--sch)}
 .brand span{display:block;font-family:var(--ff-ui);font-size:11px;color:var(--ink-3);letter-spacing:.04em}
+.teamname{font-family:var(--ff-ui);font-size:12.5px;font-weight:700;color:#6B4E00;background:var(--sch-gold);
+  padding:5px 12px;border-radius:999px;white-space:nowrap;flex:0 0 auto}
+.ribbon{height:3px;background:linear-gradient(90deg,var(--sch-sky) 0%,var(--sch-sky) 30%,var(--sch-green) 52%,var(--sch-gold) 76%,var(--sch-gold) 100%)}
 nav.main{display:flex;gap:2px;flex-wrap:wrap;margin-inline-start:auto}
 nav.main a{font-family:var(--ff-ui);font-size:14.5px;font-weight:500;text-decoration:none;color:var(--ink-2);padding:7px 11px;border-radius:8px}
 nav.main a:hover{background:var(--surface-2);color:var(--ink)}
-nav.main a[aria-current]{background:var(--accent-soft);color:var(--accent)}
+nav.main a[aria-current]{background:var(--sch-soft);color:var(--sch)}
 @media (max-width:760px){
   .top .wrap{gap:9px;padding-block:8px}
   nav.main{gap:0;order:3;width:100%;margin-inline-start:0;justify-content:flex-start}
@@ -86,6 +111,23 @@ nav.main a[aria-current]{background:var(--accent-soft);color:var(--accent)}
 .searchbox svg{position:absolute;inset-inline-start:10px;top:50%;transform:translateY(-50%);width:16px;height:16px;fill:none;stroke:var(--ink-3);stroke-width:2;pointer-events:none}
 .themebtn{flex:0 0 auto;width:38px;height:38px;display:grid;place-items:center;border:1px solid var(--line-2);background:var(--surface-2);border-radius:10px;cursor:pointer}
 .themebtn svg{width:18px;height:18px;fill:none;stroke:var(--ink-2);stroke-width:1.8}
+/* בטלפון: במקום שהתפריט יישבר לשש שורות ויאכל חצי מסך — שורה אחת שנגללת הצידה */
+@media (max-width:780px){
+  .orgbar .l-school{height:24px}
+  .orgbar .l-council{height:20px}
+  .orgbar .wrap{padding-block:6px}
+  .top .wrap.mainbar{gap:10px;row-gap:9px}
+  .brand{flex:1 1 auto;min-width:0}
+  .themebtn{order:1}
+  .searchbox{order:2;flex:1 1 100%;max-width:none}
+  nav.main{order:3;width:100%;margin-inline-start:0;flex-wrap:nowrap;overflow-x:auto;
+    scrollbar-width:none;-webkit-overflow-scrolling:touch;
+    -webkit-mask-image:linear-gradient(to left,transparent 0,#000 18px,#000 calc(100% - 18px),transparent 100%);
+            mask-image:linear-gradient(to left,transparent 0,#000 18px,#000 calc(100% - 18px),transparent 100%)}
+  nav.main::-webkit-scrollbar{display:none}
+  nav.main a{white-space:nowrap;flex:0 0 auto}
+  .teamname{order:1}
+}
 
 /* ---------- hero ---------- */
 .hero{background:var(--bg-band);border-bottom:1px solid var(--line);overflow:hidden;position:relative}
@@ -260,11 +302,30 @@ footer a{color:var(--ink-2)}
 </head>
 <body>
 <header class="top">
-  <div class="wrap">
+  <div class="orgbar">
+    <div class="wrap">
+      <span class="logos">
+        <img class="l-school" src="img/brand/school.png" alt="לוגו בית ספר מודיעים, נחלים">
+        <span class="vr"></span>
+        <img class="l-council" src="img/brand/council.png" alt="לוגו מועצה אזורית חבל מודיעין">
+      </span>
+      <p><b>בית ספר מודיעים · נחלים</b><span>מועצה אזורית חבל מודיעין</span></p>
+    </div>
+  </div>
+  <div class="stickybar">
+  <div class="wrap mainbar">
     <a class="brand" href="#home">
-      <img src="img/logo.jpg" alt="">
-      <span><b>גלגלי שיניים ודגמים</b><span>נבחרת הרובוטיקה · בית ספר מודיעים</span></span>
+      <svg class="mark" viewBox="0 0 44 44" aria-hidden="true">
+        <circle cx="18" cy="17" r="13.2" fill="none" stroke="var(--sch)" stroke-width="4.2" stroke-dasharray="3.14 3.14"></circle>
+        <circle cx="18" cy="17" r="11.5" fill="var(--sch)"></circle>
+        <circle cx="18" cy="17" r="3.6" fill="var(--surface)"></circle>
+        <circle cx="33" cy="31" r="8" fill="none" stroke="var(--sch-gold)" stroke-width="3.4" stroke-dasharray="2.75 2.75"></circle>
+        <circle cx="33" cy="31" r="6.6" fill="var(--sch-gold)"></circle>
+        <circle cx="33" cy="31" r="2.3" fill="var(--surface)"></circle>
+      </svg>
+      <span><b>גלגלי שיניים ודגמים</b><span>נבחרת הרובוטיקה</span></span>
     </a>
+    <span class="teamname" id="teamname" hidden></span>
     <nav class="main" id="nav">
       <a href="#home">בית</a>
       <a href="#guide">עקרונות בנייה</a>
@@ -282,6 +343,8 @@ footer a{color:var(--ink-2)}
     <button class="themebtn" id="themebtn" type="button" aria-label="מעבר בין מצב בהיר לכהה">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
     </button>
+  </div>
+  <div class="ribbon"></div>
   </div>
 </header>
 
@@ -306,6 +369,15 @@ var THANKS_INTRO=["כמעט כל מה שיש באתר הזה הגיע ממישה
 var THANKS_OUTRO={"h":"מה אנחנו עשינו","p":["תרגמנו לעברית, כתבנו מחדש את ההסברים והתאמנו אותם לכיתות ה׳–ו׳, חישבנו את יחסי ההעברה, הוספנו מחשבון, וסידרנו את הכול במקום אחד שנוח לחפש בו.","שום מנגנון, שום הוראת בנייה ושום צילום באתר הזה לא נבנו על ידינו."]};
 var LEGAL="האתר אינו קשור לקבוצת LEGO ואינו מייצג אותה. LEGO®‎ וסימני המסחר הקשורים אליו שייכים לקבוצת LEGO; FIRST®‎ ו‑FIRST®‎ LEGO®‎ League שייכים לבעליהם. כל החומרים שבאתר שייכים ליוצריהם, ומופיעים כאן בתודה ובקרדיט מלא. מי שמזהה חומר שלו ורוצה שנשנה את אופן הייחוס או שנסיר אותו — נשמח שיפנה אלינו ונעשה זאת מיד.";
 var PICKS=["12-tooth-to-12-tooth-90-degrees","worm-gear-to-24-tooth-gear","one-way-door-3x5","24-tooth-crown-gear-to-60-tooth-turntable-90-degrees","pulley-to-vertical-motion","8-tooth-gear-to-24-tooth-crown-gear-90-degrees","rack-mechanism-one-way-door","28-tooth-gear-to-linear"].map(function(s){return MODELS.find(function(m){return m.s===s;});});
+
+/* ===== שם הנבחרת =====
+   כשייקבע שם לנבחרת — לכתוב אותו כאן בין הגרשיים, להריץ node src/build.js ולדחוף.
+   הוא יופיע כתגית זהב בבאנר, ליד שם האתר. כל עוד זה ריק — שום דבר לא מוצג. */
+var TEAM = '';
+(function(){
+  var el = document.getElementById('teamname');
+  if(el && TEAM){ el.textContent = TEAM; el.hidden = false; }
+})();
 
 /* ---------- helpers ---------- */
 var $ = function(s){ return document.querySelector(s); };
