@@ -201,6 +201,24 @@ section{padding-block:clamp(30px,5vw,52px)}
 
 /* ---------- learn ---------- */
 .lesson{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:clamp(18px,3vw,26px);margin-bottom:16px}
+
+/* ---------- טופס יצירת קשר ---------- */
+.contactbox{background:var(--sch-tint);border:1px solid var(--line);border-radius:16px;padding:clamp(18px,3vw,26px);margin-bottom:16px}
+.contactbox h2{font-size:clamp(19px,2.6vw,23px)}
+.contactbox .hint{font-size:14.5px;color:var(--ink-2);margin:8px 0 18px;max-width:62ch}
+.cform{display:grid;gap:13px;max-width:640px}
+.cf-row{display:grid;gap:13px;grid-template-columns:1fr 1fr}
+@media (max-width:560px){.cf-row{grid-template-columns:1fr}}
+.cform label{display:grid;gap:5px;font-family:var(--ff-ui);font-size:13.5px;font-weight:500;color:var(--ink-2)}
+.cform input[type=text],.cform input[type=email],.cform textarea{font:inherit;font-size:15.5px;width:100%;padding:10px 12px;border:1px solid var(--line-2);border-radius:10px;background:var(--surface);color:var(--ink)}
+.cform textarea{min-height:118px;resize:vertical;line-height:1.5}
+.cf-hp{position:absolute!important;left:-9999px;width:1px;height:1px;opacity:0}
+.cf-foot{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:2px}
+button.btn{cursor:pointer}
+button.btn[disabled]{opacity:.6;cursor:progress}
+.cf-msg{font-family:var(--ff-ui);font-size:14px;font-weight:500;line-height:1.4}
+.cf-msg.ok{color:var(--c-swing)}
+.cf-msg.err{color:var(--c-door)}
 .lesson h2{font-size:clamp(20px,3vw,26px)}
 .lesson p{color:var(--ink-2);margin-top:10px}
 .lesson p strong{color:var(--ink);font-weight:700}
@@ -351,7 +369,7 @@ footer a{color:var(--ink-2)}
   <div class="wrap">
     <p><strong>הדגמים, התמונות והוראות הבנייה נוצרו על ידי קבוצת Desert Capybaras #3000 מאופקים</strong> ומפורסמים באתר <a href="https://www.gearsandmodels.org/">gearsandmodels.org</a>. האתר הזה הוא עיבוד בעברית של התוכן שלהם, לשימוש נבחרת הרובוטיקה של בית ספר מודיעים.</p>
     <p>האתר אינו קשור לקבוצת LEGO ואינו מייצג אותה. LEGO®‎, FIRST®‎ ו‑FIRST®‎ LEGO®‎ League הם סימנים מסחריים של בעליהם.</p>
-    <p>מצאתם טעות, או רוצים שנשנה את אופן הייחוס לחומר שלכם? <a href="https://modiim.tik-tak.school/contact/" target="_blank" rel="noopener">פנו אלינו דרך בית הספר</a>.</p>
+    <p>מצאתם טעות, או רוצים שנשנה את אופן הייחוס לחומר שלכם? <a href="#contact">כתבו לנו</a>.</p>
   </div>
 </footer>
 
@@ -366,6 +384,12 @@ var TEAM = '';
 /* ===== שאלון בחירת השם =====
    הרצועה בראש עמוד הבית מופיעה כל עוד יש כאן כתובת. לסיום ההצבעה — למחוק את הכתובת. */
 var POLL = 'https://docs.google.com/forms/d/e/1FAIpQLSdY4wFF8OZx673C0dd0cG4j8CNodKN0BHsJ8UHuOnE3Ukf86w/viewform';
+
+/* ===== טופס יצירת הקשר =====
+   מפתח הגישה של Web3Forms. הכתובת שאליה ההודעות נשלחות שמורה אצלם ולא מופיעה
+   כאן — זו כל הנקודה. להחלפת היעד: להוציא מפתח חדש ב-web3forms.com ולהחליף כאן.
+   כל עוד זה ריק — הטופס לא מוצג כלל ובמקומו מופיע קישור לעמוד בית הספר. */
+var W3KEY = '';
 (function(){
   var el = document.getElementById('teamname');
   if(el && TEAM){ el.textContent = TEAM; el.hidden = false; }
@@ -906,8 +930,62 @@ function viewThanks(){
     '<div class="lesson"><h2>'+esc(THANKS_OUTRO.h)+'</h2>'+
       THANKS_OUTRO.p.map(function(x){ return '<p>'+x+'</p>'; }).join('')+
     '</div>'+
+    contactBox()+
     '<p class="srcnote">'+esc(LEGAL)+'</p>'+
     '</div></section>';
+}
+
+/* ---------- טופס יצירת קשר ---------- */
+function contactBox(){
+  if(!W3KEY) return '<div class="contactbox" id="contact"><h2>כתבו לנו</h2>'+
+    '<p class="hint">מצאתם טעות, רוצים שנשנה את אופן הייחוס לחומר שלכם, או שיש לכם חומר שמקומו כאן? '+
+    '<a href="https://modiim.tik-tak.school/contact/" target="_blank" rel="noopener">פנו אלינו דרך בית הספר</a>.</p></div>';
+  return '<div class="contactbox" id="contact">'+
+    '<h2>כתבו לנו</h2>'+
+    '<p class="hint">מצאתם טעות בתרגום, בהסבר או בחישוב? רוצים שנשנה את אופן הייחוס לחומר שלכם, או שנסיר אותו? יש לכם חומר שמקומו כאן? זה המקום — נקרא ונחזור אליכם.</p>'+
+    '<form class="cform" id="cform" novalidate>'+
+      '<div class="cf-row">'+
+        '<label>השם שלכם<input type="text" name="name" required autocomplete="name"></label>'+
+        '<label>אימייל לחזרה<input type="email" name="email" required autocomplete="email" dir="ltr"></label>'+
+      '</div>'+
+      '<label>ההודעה<textarea name="message" required></textarea></label>'+
+      '<input type="checkbox" name="botcheck" class="cf-hp" tabindex="-1" autocomplete="off" aria-hidden="true">'+
+      '<div class="cf-foot">'+
+        '<button type="submit" class="btn primary">שליחה</button>'+
+        '<span class="cf-msg" id="cfmsg" role="status" aria-live="polite"></span>'+
+      '</div>'+
+    '</form></div>';
+}
+function wireContact(){
+  var f = $('#cform'); if(!f) return;
+  var msg = $('#cfmsg'), btn = f.querySelector('button[type=submit]');
+  function say(cls, t){ msg.className = 'cf-msg'+(cls?' '+cls:''); msg.textContent = t; }
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    var d = {};
+    Array.prototype.forEach.call(f.elements, function(el){
+      if(!el.name) return;
+      d[el.name] = el.type === 'checkbox' ? el.checked : el.value.trim();
+    });
+    if(!d.name || !d.email || !d.message){ say('err','צריך למלא שם, אימייל והודעה.'); return; }
+    if(d.email.indexOf('@') < 1){ say('err','כתובת האימייל לא נראית תקינה.'); return; }
+    d.access_key = W3KEY;
+    d.subject = 'פנייה מאתר המנגנונים — ' + d.name;
+    d.from_name = 'אתר המנגנונים';
+    btn.disabled = true; say('','שולח…');
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type':'application/json', 'Accept':'application/json' },
+      body: JSON.stringify(d)
+    }).then(function(r){ return r.json(); }).then(function(j){
+      btn.disabled = false;
+      if(j && j.success){ f.reset(); say('ok','תודה! ההודעה נשלחה, ונחזור אליכם.'); }
+      else { say('err','משהו השתבש בשליחה. אפשר לנסות שוב בעוד רגע.'); }
+    })['catch'](function(){
+      btn.disabled = false;
+      say('err','לא הצלחנו לשלוח — בדקו את החיבור ונסו שוב.');
+    });
+  });
 }
 
 /* ---------- router ---------- */
@@ -924,7 +1002,7 @@ function render(){
   else if(h==='learn'){ html = viewLearn(); navKey='learn'; }
   else if(h==='links'){ html = viewLinks(); navKey='links'; }
   else if(h==='about'){ html = viewAbout(); navKey='about'; }
-  else if(h==='thanks'){ html = viewThanks(); navKey='thanks'; }
+  else if(h==='thanks' || h==='contact'){ html = viewThanks(); navKey='thanks'; }
   else { html = viewHome(); }
   $('#view').innerHTML = html;
   var qi = $('#q'); if(qi && qi.value && h==='home'){ /* keep */ }
@@ -934,6 +1012,11 @@ function render(){
   });
   if(h==='learn') wireCalc();
   if(h==='blocks') wireBlocks();
+  if(h==='thanks' || h==='contact') wireContact();
+  if(h==='contact'){
+    var cb = $('#contact');
+    if(cb){ cb.scrollIntoView({block:'start'}); return; }
+  }
   window.scrollTo(0,0);
 }
 
