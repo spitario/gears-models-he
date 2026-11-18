@@ -344,6 +344,7 @@ footer a{color:var(--ink-2)}
       <a href="#home">בית</a>
       <a href="#strategy">אסטרטגיה</a>
       <a href="#guide">עקרונות בנייה</a>
+      <a href="#robot">בונים את הרובוט</a>
       <a href="#drive">נהיגה מדויקת</a>
       <a href="#learn">איך זה עובד</a>
       <a href="#blocks">מדריך הבלוקים</a>
@@ -486,6 +487,7 @@ function viewHome(){
     '</div>'+
     '<div class="dl"><a class="btn primary" href="#strategy">לפני שבונים: בוחרים משימות ומתכננים הרצות</a>'+
     '<a class="btn" href="#guide">עקרונות בנייה</a>'+
+    '<a class="btn" href="#robot">בונים את הרובוט</a>'+
     '<a class="btn" href="#learn">איך גלגלי שיניים עובדים</a>'+
     '<a class="btn" href="#innovation">פרויקט החדשנות</a>'+
     '<a class="btn" href="#process">תהליך הפיתוח ההנדסי</a></div>'+
@@ -832,11 +834,17 @@ function viewDoc(title, D, links){
 }
 function viewStrategy(){
   return viewDoc('בוחרים משימות, מתכננים הרצות', STRATEGY,
-    '<a class="btn primary" href="#home">לקטלוג המנגנונים ←</a><a class="btn" href="#drive">לנהיגה מדויקת</a>');
+    '<a class="btn primary" href="#robot">לבניית הרובוט ←</a><a class="btn" href="#home">לקטלוג המנגנונים</a>'+
+    '<a class="btn" href="#drive">לנהיגה מדויקת</a>');
 }
 function viewInnovation(){
   return viewDoc('פרויקט החדשנות', INNOVATION,
     '<a class="btn primary" href="#strategy">לאסטרטגיה ותכנון הרצות ←</a><a class="btn" href="#process">לתהליך הפיתוח</a>');
+}
+function viewRobot(){
+  return viewDoc('בונים את הרובוט', ROBOT,
+    '<a class="btn primary" href="#home">לקטלוג המנגנונים ←</a><a class="btn" href="#guide">לעקרונות הבנייה</a>'+
+    '<a class="btn" href="#drive">לנהיגה מדויקת</a>');
 }
 
 /* ---------- תהליך הפיתוח ---------- */
@@ -1039,6 +1047,7 @@ function render(){
   else if(h==='drive'){ html = viewDrive(); navKey='drive'; }
   else if(h==='strategy'){ html = viewStrategy(); navKey='strategy'; }
   else if(h==='innovation'){ html = viewInnovation(); navKey='innovation'; }
+  else if(h==='robot'){ html = viewRobot(); navKey='robot'; }
   else if(h==='process'){ html = viewProcess(); navKey='process'; }
   else if(h==='blocks'){ html = viewBlocks(); navKey='blocks'; }
   else if(h==='learn'){ html = viewLearn(); navKey='learn'; }
