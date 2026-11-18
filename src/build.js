@@ -10,6 +10,7 @@ const clean = require('./data/models.json');
 const he    = require('./he.js');
 const guide = require('./guide.js');
 const dr    = require('./drive.js');
+const st    = require('./strategy.js');
 const blocks= require('./data/blocks.json');
 const cr    = require('./credits.js');
 
@@ -45,6 +46,9 @@ const data = 'var CATS='  + JSON.stringify(cats)   + ';\n'
            + 'var PROCESS='+JSON.stringify(guide.process)+';\n'
            + 'var DRIVE='+JSON.stringify(dr.drive)+';\n'
            + 'var DRIVESVG='+JSON.stringify(dr.S)+';\n'
+           + 'var STRATEGY='+JSON.stringify(st.strategy)+';\n'
+           + 'var INNOVATION='+JSON.stringify(st.innovation)+';\n'
+           + 'var STRATSVG='+JSON.stringify(st.S)+';\n'
            + 'var BLOCKS=' + JSON.stringify(blocks)+ ';\n'
            + 'var CREDITS='+ JSON.stringify(cr.credits)+ ';\n'
            + 'var THANKS_INTRO='+JSON.stringify(cr.thanksIntro)+';\n'

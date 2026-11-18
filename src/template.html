@@ -342,11 +342,13 @@ footer a{color:var(--ink-2)}
     <span class="teamname" id="teamname" hidden></span>
     <nav class="main" id="nav">
       <a href="#home">בית</a>
+      <a href="#strategy">אסטרטגיה</a>
       <a href="#guide">עקרונות בנייה</a>
       <a href="#drive">נהיגה מדויקת</a>
       <a href="#learn">איך זה עובד</a>
-      <a href="#process">תהליך הפיתוח</a>
       <a href="#blocks">מדריך הבלוקים</a>
+      <a href="#innovation">פרויקט החדשנות</a>
+      <a href="#process">תהליך הפיתוח</a>
       <a href="#links">מקורות</a>
       <a href="#about">על האתר</a>
       <a href="#thanks">תודות</a>
@@ -482,8 +484,10 @@ function viewHome(){
       '<div class="step"><div><b>או פותחים את הדגם התלת־ממדי</b><p>קובץ ה‑ZIP מכיל דגם לתוכנת BrickLink Studio החינמית. אפשר לסובב אותו, לפרק אותו ולשנות אותו לפי הצורך.</p></div></div>'+
       '<div class="step"><div><b>בונים, בודקים, משפרים</b><p>בנו את המנגנון בנפרד לפני שמחברים אותו לרובוט — ככה הרבה יותר קל לגלות מה לא עובד.</p></div></div>'+
     '</div>'+
-    '<div class="dl"><a class="btn primary" href="#guide">עקרונות בנייה — להכיר את החלקים</a>'+
+    '<div class="dl"><a class="btn primary" href="#strategy">לפני שבונים: בוחרים משימות ומתכננים הרצות</a>'+
+    '<a class="btn" href="#guide">עקרונות בנייה</a>'+
     '<a class="btn" href="#learn">איך גלגלי שיניים עובדים</a>'+
+    '<a class="btn" href="#innovation">פרויקט החדשנות</a>'+
     '<a class="btn" href="#process">תהליך הפיתוח ההנדסי</a></div>'+
     '</div></section>'+
 
@@ -799,6 +803,42 @@ function viewDrive(){
     '</div></section>';
 }
 
+/* ---------- פרקים מחוברות Choco Cows ---------- */
+var CHOCO = '<div class="srcbox" style="--bin:var(--c-swing)">'+
+  '<p>הפרק הזה מבוסס על חוברות ההדרכה שכתבה נבחרת <strong>Choco Cows #341</strong> מבית הספר אורט עירוני ד׳ מודיעין, '+
+  'בשנתן השלישית בתוכנית ובמיוחד בשביל נבחרות חדשות. השיטות והתוכן שלהן — כאן הן נכתבו מחדש בשפה של כיתות ה׳–ו׳.</p>'+
+  '<a class="more" href="#thanks">כל התודות ←</a></div>';
+
+function figFrom(map,name,cap){
+  var svg = map[name];
+  if(!svg) return '';
+  return '<figure class="fig svgfig">'+svg+(cap ? '<figcaption>'+esc(cap)+'</figcaption>' : '')+'</figure>';
+}
+
+function viewDoc(title, D, links){
+  var body = D.secs.map(function(s){
+    return '<div class="lesson"><h2>'+esc(s.h)+'</h2>'+
+      s.p.map(function(x){ return '<p>'+x+'</p>'; }).join('')+
+      (s.svg ? figFrom(STRATSVG, s.svg, s.cap) : '')+'</div>';
+  }).join('');
+  return '<section><div class="wrap">'+
+    '<div class="sec-head"><h2>'+esc(title)+'</h2></div>'+
+    '<p class="sec-sub">'+esc(D.lead)+'</p>'+
+    CHOCO + body +
+    '<div class="lesson"><h2>'+esc(D.outro.h)+'</h2>'+
+      D.outro.p.map(function(x){ return '<p>'+x+'</p>'; }).join('')+'</div>'+
+    '<div class="dl">'+links+'</div>'+
+    '</div></section>';
+}
+function viewStrategy(){
+  return viewDoc('בוחרים משימות, מתכננים הרצות', STRATEGY,
+    '<a class="btn primary" href="#home">לקטלוג המנגנונים ←</a><a class="btn" href="#drive">לנהיגה מדויקת</a>');
+}
+function viewInnovation(){
+  return viewDoc('פרויקט החדשנות', INNOVATION,
+    '<a class="btn primary" href="#strategy">לאסטרטגיה ותכנון הרצות ←</a><a class="btn" href="#process">לתהליך הפיתוח</a>');
+}
+
 /* ---------- תהליך הפיתוח ---------- */
 function viewProcess(){
   var P = PROCESS;
@@ -997,6 +1037,8 @@ function render(){
   else if(h==='guide'){ html = viewGuide(); navKey='guide'; }
   else if(h.indexOf('g-')===0){ html = viewChapter(h.slice(2)); navKey='guide'; }
   else if(h==='drive'){ html = viewDrive(); navKey='drive'; }
+  else if(h==='strategy'){ html = viewStrategy(); navKey='strategy'; }
+  else if(h==='innovation'){ html = viewInnovation(); navKey='innovation'; }
   else if(h==='process'){ html = viewProcess(); navKey='process'; }
   else if(h==='blocks'){ html = viewBlocks(); navKey='blocks'; }
   else if(h==='learn'){ html = viewLearn(); navKey='learn'; }
